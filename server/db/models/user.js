@@ -1,4 +1,4 @@
-const crypto = require('crypto'),
+const crypto = require('crypto-browserify'),
       { STRING, BOOLEAN } = require('sequelize'),
       db = require('../db');
 
