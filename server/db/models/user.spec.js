@@ -18,7 +18,6 @@ describe('User model (not anonymous!)', () => {
           name: 'cody',
           email: 'cody@puppybook.com',
           password: 'bones',
-          address: '1 Puppy Way, Puppyville, NY 10003'
         })
           .then(user => cody = user)
       });
@@ -52,10 +51,6 @@ describe('User model (not anonymous!)', () => {
 
     it('has an email', () => {
       expect(cody).to.have.property('email', cody.email);
-    });
-
-    it('has an address', () => {
-      expect(cody).to.have.property('address', cody.address);
     });
   })
 });
