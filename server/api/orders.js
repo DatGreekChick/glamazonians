@@ -31,7 +31,10 @@ router.get('/:orderId', (req, res, next) => {
 // PUT /api/orders/:orderId
 router.put('/:orderId', (req, res, next) => {
   Order.findById(req.params.orderId)
-  .then(order => order.update(req.body))
+  .then(order => order.update(req.body), {
+    returning: true,
+    plain: true
+  })
     .then(newOrder => res.status(201).json(newOrder))
     .catch(next)
 });
