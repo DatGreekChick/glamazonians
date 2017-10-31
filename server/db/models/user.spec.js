@@ -28,11 +28,13 @@ describe('Member model', () => {
 
       it('returns false if the password is incorrect', () => {
         expect(cody.correctPassword('bonez')).to.be.equal(false)
-      })
+      });
     })
   });
 
   describe('member has other required properties', () => {
+    let cody;
+
     beforeEach(() => {
       return Member.create({
         name: 'cody',

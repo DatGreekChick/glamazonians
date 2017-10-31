@@ -2,7 +2,7 @@ const crypto = require('crypto'),
       { STRING, DATEONLY } = require('sequelize'),
       db = require('../db');
 
-const Member = db.define('member', {
+const User = db.define('user', {
   email: {
     type: STRING,
     unique: true,
@@ -30,15 +30,15 @@ const Member = db.define('member', {
   facebookId: STRING,
 });
 
-Member.prototype.correctPassword = function (candidatePwd) {
-  return Member.encryptPassword(candidatePwd, this.salt) === this.password
+User.prototype.correctPassword = function (candidatePwd) {
+  return User.encryptPassword(candidatePwd, this.salt) === this.password
 };
 
-Member.generateSalt = function () {
+User.generateSalt = function () {
   return crypto.randomBytes(16).toString('base64')
 };
 
-Member.encryptPassword = function (plainText, salt) {
+User.encryptPassword = function (plainText, salt) {
   return crypto
     .createHash('RSA-SHA256')
     .update(plainText)
@@ -46,14 +46,14 @@ Member.encryptPassword = function (plainText, salt) {
     .digest('hex')
 };
 
-const setSaltAndPassword = member => {
-  if (member.changed('password')) {
-    member.salt = Member.generateSalt();
-    member.password = Member.encryptPassword(member.password, member.salt)
+const setSaltAndPassword = user => {
+  if (user.changed('password')) {
+    user.salt = User.generateSalt();
+    user.password = User.encryptPassword(user.password, user.salt);
   }
 };
 
-Member.beforeCreate(setSaltAndPassword);
-Member.beforeUpdate(setSaltAndPassword);
+User.beforeCreate(setSaltAndPassword);
+User.beforeUpdate(setSaltAndPassword);
 
-module.exports = Member;
+module.exports = User;
