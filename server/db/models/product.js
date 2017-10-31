@@ -15,7 +15,7 @@ const Product = db.define('product', {
   price: {
     type: Sequelize.DECIMAL(12, 2)
   },
-  QuantityAvilable: {
+  quantityAvilable: {
     type: Sequelize.INTEGER,
   },
   description: {
