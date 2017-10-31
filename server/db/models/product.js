@@ -9,7 +9,8 @@ const Product = db.define('product', {
   },
   image: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
+    defaultValue: 'http://placecage.com/400/400'
   },
   price: {
     type: Sequelize.DECIMAL(12, 2)
@@ -36,7 +37,9 @@ const Product = db.define('product', {
   },
   rating: {
     type: Sequelize.VIRTUAL,
-
+    get() {
+      return this.getAverageRating();
+    }
   }
 });
 
@@ -47,14 +50,18 @@ module.exports = Product;
 // Review belongsTo Product and Product hasMany Review makes a ProductId Column on Review
 
 Product.protoype.getAverageRating = () => {
-  this.findAndCountAll({
+  this.findAll({
     include: [
        { model: Review, required: true}
     ]
   });
   .then((reviews) => {
-    review.rating
-  })
+    const average = reviews.reduce((sum, value)=> {
+      return sum + value.rating;
+    }, 0);
+    return (average/reviews.length);
+  });
+  .catch(err) => console.error(err);
 };
 
 
