@@ -1,5 +1,5 @@
 const crypto = require('crypto'),
-      { STRING, DATEONLY } = require('sequelize'),
+      { STRING, DATEONLY, BOOLEAN } = require('sequelize'),
       db = require('../db');
 
 const User = db.define('user', {
@@ -22,6 +22,10 @@ const User = db.define('user', {
   address: {
     type: STRING,
     allowNull: false,
+  },
+  isAdmin: {
+    type: BOOLEAN,
+    defaultValue: false,
   },
   phone: STRING,
   birthday: DATEONLY,
