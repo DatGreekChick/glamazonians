@@ -35,36 +35,10 @@ const Product = db.define('product', {
       this.setDataValue('tags', tags);
     }
   },
-  // rating: {
-  //   type: Sequelize.VIRTUAL,
-  //   get() {
-  //     return this.getAverageRating();
-  //   }
-  // }
+
 });
 
 module.exports = Product;
-
-// instanceMethods
-
-// TO DO after review is merged
-// Review belongsTo Product and Product hasMany Review makes a ProductId Column on Review
-
-// Product.protoype.getAverageRating = () => {
-//   return this.findAll({
-//     include: [
-//        { model: Review, required: true}
-//     ]
-//   });
-//   .then((reviews) => {
-//     const average = reviews.reduce((sum, value)=> {
-//       return sum + value.rating;
-//     }, 0);
-//     return (average/reviews.length);
-//   });
-//   .catch(err) => console.error(err);
-// };
-
 
 // classMethods
 
@@ -77,16 +51,3 @@ Product.findSimilarByTag = (tag) => {
     }
   });
 };
-
-/**
- * hooks
- */
-// const setSaltAndPassword = user => {
-//   if (user.changed('password')) {
-//     user.salt = User.generateSalt()
-//     user.password = User.encryptPassword(user.password, user.salt)
-//   }
-// }
-//
-// User.beforeCreate(setSaltAndPassword)
-// User.beforeUpdate(setSaltAndPassword)
