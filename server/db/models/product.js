@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize')
-const db = require('../db')
+const Sequelize = require('sequelize');
+const db = require('../db');
 
 const Product = db.define('product', {
   name: {
@@ -12,7 +12,7 @@ const Product = db.define('product', {
     allowNull: false
   },
   price: {
-    type: Sequelize.DECIMAL(12,2)
+    type: Sequelize.DECIMAL(12, 2)
   },
   QuantityAvilable: {
     type: Sequelize.INTEGER,
@@ -21,17 +21,54 @@ const Product = db.define('product', {
     type: Sequelize.TEXT
   },
   tags: {
-    type: Sequelize.ARRAY(STRING)
+    type: Sequelize.ARRAY(Sequelize.STRING),
+    defaultValue: [],
+    set: function(tags) {
+      tags = tags || [];
+
+      if (typeof tags === 'string') {
+        tags = tags.split(',').map(function(str) {
+          return str.trim();
+        });
+      }
+      this.setDataValue('tags', tags);
+    }
+  },
+  rating: {
+    type: Sequelize.VIRTUAL,
+
   }
-})
+});
 
-module.exports = Product
+module.exports = Product;
 
-/**
- * instanceMethods
- // after the Reviews Model is done add a method to get the average review rating
-/**
- * classMethods
+// instanceMethods
+
+// Review belongsTo Product and Product hasMany Review makes a ProductId Column on Review
+
+Product.protoype.getAverageRating = () => {
+  this.findAndCountAll({
+    include: [
+       { model: Review, required: true}
+    ]
+  });
+  .then((reviews) => {
+    review.rating
+  })
+};
+
+
+// classMethods
+
+Product.findSimilarByTag = (tag) => {
+  this.findAll({
+    where: {
+      tags: {
+        $contains: [tag]
+      }
+    }
+  });
+};
 
 /**
  * hooks
