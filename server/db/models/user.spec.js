@@ -2,9 +2,9 @@
 
 const {expect} = require('chai');
 const db = require('../index');
-const Member = db.model('member');
+const User = db.model('user');
 
-describe('Member model', () => {
+describe('User model (not anonymous!)', () => {
   beforeEach(() => {
     return db.sync({force: true})
   });
@@ -14,10 +14,11 @@ describe('Member model', () => {
       let cody;
 
       beforeEach(() => {
-        return Member.create({
+        return User.create({
           name: 'cody',
           email: 'cody@puppybook.com',
-          password: 'bones'
+          password: 'bones',
+          address: '1 Puppy Way, Puppyville, NY 10003'
         })
           .then(user => cody = user)
       });
@@ -32,14 +33,15 @@ describe('Member model', () => {
     })
   });
 
-  describe('member has other required properties', () => {
+  describe('user has other required properties', () => {
     let cody;
 
     beforeEach(() => {
-      return Member.create({
+      return User.create({
         name: 'cody',
         email: 'cody@puppybook.com',
-        password: 'bones'
+        password: 'bones',
+        address: '1 Puppy Way, Puppyville, NY 10003'
       })
         .then(user => cody = user)
     });

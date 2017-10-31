@@ -6,23 +6,18 @@ const User = db.define('user', {
   email: {
     type: STRING,
     unique: true,
-    allowNull: false,
     validate: {
       isEmail: true,
     },
   },
   password: {
     type: STRING,
-    allowNull: false,
     validate: {
       min: 8,
       max: 24,
     },
   },
-  address: {
-    type: STRING,
-    allowNull: false,
-  },
+  address: STRING,
   isAdmin: {
     type: BOOLEAN,
     defaultValue: false,
