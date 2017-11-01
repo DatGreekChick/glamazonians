@@ -22,11 +22,14 @@ describe('lineItem model', () => {
     it('purchasePrice should never be null', () => {
       const itemWithoutPrice = LineItem.build({ purchaseNum: 1 });
 
-      return itemWithoutPrice.save()
-      .then(() => { throw new Error("Promise should have rejected") })
-      .catch(err => {
-        expect(err).to.exist;
-      });
+      return itemWithoutPrice
+        .save()
+        .then(() => {
+          throw new Error('Promise should have rejected');
+        })
+        .catch(err => {
+          expect(err).to.exist;
+        });
     });
 
     it('purchaseNum is 1 by default', () => {

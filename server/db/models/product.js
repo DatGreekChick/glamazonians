@@ -11,7 +11,7 @@ const Product = db.define('product', {
     type: STRING,
     defaultValue: 'http://placecage.com/400/400'
   },
-  price: DECIMAL(12, 2),
+  price: DECIMAL(12, 2, 'int'),
   quantityAvailable: INTEGER,
   description: TEXT,
   tags: {

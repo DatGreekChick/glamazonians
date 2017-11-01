@@ -3,7 +3,7 @@ const db = require('../db');
 
 const LineItem = db.define('lineItem', {
   purchasePrice: {
-    type: DECIMAL(12,2),
+    type: DECIMAL(12, 2),
     allowNull: false
   },
   purchaseNum: {

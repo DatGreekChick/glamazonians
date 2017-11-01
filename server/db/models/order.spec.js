@@ -7,8 +7,7 @@ describe('Order model', () => {
     return db.sync({ force: true });
   });
 
-  // TODO: 'status property'?
-  describe('correct Status', () => {
+  describe('Status Property', () => {
     let newOrder;
 
     beforeEach(() => {
@@ -19,9 +18,8 @@ describe('Order model', () => {
       });
     });
 
-    // TODO: update string
-    it('returns true if the password is correct', () => {
+    it('returns the current status of the order', () => {
       expect(newOrder.status).to.be.equal('Processing');
     });
-  }); // end describe('correct Status')
-}); // end describe('Order model')
+  });
+});
