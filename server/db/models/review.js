@@ -1,23 +1,23 @@
-const { STRING, BOOLEAN, RANGE, INTEGER, TEXT} = require('sequelize');
+const { STRING, BOOLEAN, RANGE, INTEGER, TEXT } = require('sequelize');
 const db = require('../db');
 
 const Review = db.define('review', {
   title: {
-    type: STRING,
+    type: STRING
   },
   verifiedPurchase: {
     type: BOOLEAN,
-    defaultValue: false,
+    defaultValue: false
   },
   rating: {
-    type: RANGE(INTEGER(1, 5)),
+    type: INTEGER,
     defaultValue: 3,
-    allowNull: false,
+    allowNull: false
   },
   description: {
     type: TEXT,
-    allowNull: false,
-  },
+    allowNull: false
+  }
 });
 
 // TODO: to check a verified purchase
@@ -25,10 +25,10 @@ const Review = db.define('review', {
 //
 // hooks
 
-Review.beforeCreate((review) => {
+Review.beforeCreate(review => {
   if (!review.title) {
-    review.title = review.description.slice(0, 12) + "...";
+    review.title = review.description.slice(0, 12) + '...';
   }
 });
 
-model.exports = Review;
+module.exports = Review;

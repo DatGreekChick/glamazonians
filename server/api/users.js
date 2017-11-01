@@ -14,6 +14,7 @@ router.get('/', (req, res, next) => {
 })
 
 //view a list of their previous orders
+// EI: instead of doing this, you could also make a GET request to /api/orders?userId=...
 router.get('/:userId/orders', (req, res, next) => {
   const userId = +req.params.userId;
   Order.findAll({
@@ -26,15 +27,6 @@ router.get('/:userId/orders', (req, res, next) => {
   })
   .catch(next);
 });
-
-router.get('/:userId/orders/:orderId', (req, res, next) => {
-  const orderId = +req.params.orderId;
-  Order.findById(orderId)
-  .then(order => {
-    res.json(order);
-  })
-});
-
 
 //admin can get, update, and delete user when accessing users/:userId?
 router.get('/:userId', (req, res, next) => {

@@ -1,4 +1,9 @@
-const {Product, User, Review, Order, Address, LineItem} = require('./models');
+const Product = require('./product');
+const User = require('./user');
+const Order = require('./order');
+const Address = require('./address');
+const LineItem = require('./lineItem');
+const Review = require('./review');
 
 User.hasMany(Order);
 Order.belongsTo(User);

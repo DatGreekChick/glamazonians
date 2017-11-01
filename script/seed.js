@@ -1,26 +1,33 @@
 const db = require('../server/db');
-const { User, Review, Product, Address, Order, LineItem } = require('../server/db/models');
+const {
+  User,
+  Review,
+  Product,
+  Address,
+  Order,
+  LineItem
+} = require('../server/db/models');
 
-async function seed () {
-  await db.sync({force: true});
+async function seed() {
+  await db.sync({ force: true });
   console.log('db synced!');
 
   const users = await Promise.all([
     User.create({
       name: 'cody',
       email: 'cody@email.com',
-      password: '12345678',
+      password: '123456789'
     }),
     User.create({
       name: 'murphy',
       email: 'murphy@email.com',
-      password: '12345678',
+      password: '123456789'
     }),
     User.create({
       name: 'eleni',
       email: 'eleni@email.com',
-      password: '12345678',
-      isAdmin: true,
+      password: '123456789',
+      isAdmin: true
     })
   ]);
 
@@ -30,17 +37,19 @@ async function seed () {
     Review.create({
       title: 'I loved this!',
       rating: 5,
-      description: 'This product was so great. Love it. Buy it! Highly recommend!',
-      verifiedPurchase: true,
+      description:
+        'This product was so great. Love it. Buy it! Highly recommend!',
+      verifiedPurchase: true
     }),
     Review.create({
       title: 'Just ok...',
       rating: 3,
-      description: 'Eh, it was okay. I probably wouldn\'t buy it again, but it was fine.',
+      description:
+        "Eh, it was okay. I probably wouldn't buy it again, but it was fine."
     }),
     Review.create({
       rating: 1,
-      description: 'NEVER AGAIN! HATED THIS!',
+      description: 'NEVER AGAIN! HATED THIS!'
     })
   ]);
 
@@ -48,16 +57,16 @@ async function seed () {
 
   const lineItems = await Promise.all([
     LineItem.create({
-      purchasePrice: 21.00,
-      purchaseNum: 2,
+      purchasePrice: 21.0,
+      purchaseNum: 2
     }),
     LineItem.create({
-      purchasePrice: 15.00,
+      purchasePrice: 15.0
     }),
     LineItem.create({
       purchasePrice: 68.85,
-      purchaseNum: 3,
-    }),
+      purchaseNum: 3
+    })
   ]);
 
   console.log(`seeded ${lineItems.length} line items`);
@@ -68,22 +77,22 @@ async function seed () {
       line2: '',
       city: 'New York',
       state: 'NY',
-      zip: '10003',
+      zip: '10003'
     }),
     Address.create({
       line1: '123 Montvale Road',
       line2: '',
       city: 'Montvale',
       state: 'NJ',
-      zip: '07645',
+      zip: '07645'
     }),
     Address.create({
       line1: '123 Houston Street',
       line2: '',
       city: 'New York',
       state: 'NY',
-      zip: '10003',
-    }),
+      zip: '10003'
+    })
   ]);
 
   console.log(`seeded ${addresses.length} addresses`);
@@ -92,25 +101,25 @@ async function seed () {
   const products = await Promise.all([
     Product.create({
       name: 'Archer Jacket',
-      price: 25.50,
+      price: 25.5,
       quantityAvailable: 10,
       description: 'Totally not Katniss from The Hunger Games',
-      tags: ['katniss', 'tribute', 'archer', 'jacket'],
+      tags: ['katniss', 'tribute', 'archer', 'jacket']
     }),
     Product.create({
       name: 'Courageous Forest Princess',
       price: 25.99,
       quantityAvailable: 25,
       description: 'Totally not Merida from Brave',
-      tags: ['merida', 'brave', 'forest', 'princess', 'courageous'],
+      tags: ['merida', 'brave', 'forest', 'princess', 'courageous']
     }),
     Product.create({
       name: 'K Billy Skin Suit',
-      price: 35.50,
+      price: 35.5,
       quantityAvailable: 30,
       description: 'Totally not Uma Thurman in Kill Bill.',
-      tags: ['uma', 'kill', 'bill', 'yellow'],
-    }),
+      tags: ['uma', 'kill', 'bill', 'yellow']
+    })
   ]);
 
   console.log(`seeded ${products.length} products`);
@@ -124,7 +133,7 @@ async function seed () {
     }),
     Order.create({
       status: 'Completed'
-    }),
+    })
   ]);
 
   console.log(`seeded ${orders.length} orders`);
