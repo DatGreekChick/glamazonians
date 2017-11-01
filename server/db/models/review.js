@@ -1,21 +1,21 @@
-const Sequelize = require('sequelize');
+const { STRING, BOOLEAN, RANGE, INTEGER, TEXT} = require('sequelize');
 const db = require('../db');
 
 const Review = db.define('review', {
   title: {
-    type: Sequelize.STRING,
+    type: STRING,
   },
   verifiedPurchase: {
-    type: Sequelize.BOOLEAN,
+    type: BOOLEAN,
     defaultValue: false,
   },
   rating: {
-    type: Sequelize.RANGE(Sequelize.INTEGER(1,5)),
+    type: RANGE(INTEGER(1, 5)),
     defaultValue: 3,
     allowNull: false,
   },
   description: {
-    type: Sequelize.TEXT,
+    type: TEXT,
     allowNull: false,
   },
 });
@@ -26,7 +26,9 @@ const Review = db.define('review', {
 // hooks
 
 Review.beforeCreate((review) => {
-  if(!review.title){
-    review.title = review.description.slice(0,12) + "...";
+  if (!review.title) {
+    review.title = review.description.slice(0, 12) + "...";
   }
 });
+
+model.exports = Review;
