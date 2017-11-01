@@ -1,39 +1,39 @@
-const crypto = require('crypto')
-const Sequelize = require('sequelize')
-const db = require('../db')
+const crypto = require('crypto-browserify'),
+      { STRING, BOOLEAN } = require('sequelize'),
+      db = require('../db');
 
 const User = db.define('user', {
   email: {
-    type: Sequelize.STRING,
+    type: STRING,
     unique: true,
-    allowNull: false
+    validate: {
+      isEmail: true,
+    },
   },
   password: {
-    type: Sequelize.STRING
+    type: STRING,
+    validate: {
+      min: 8,
+      max: 24,
+    },
   },
-  salt: {
-    type: Sequelize.STRING
+  name: STRING,
+  isAdmin: {
+    type: BOOLEAN,
+    defaultValue: false,
   },
-  googleId: {
-    type: Sequelize.STRING
-  }
-})
+  salt: STRING,
+  googleId: STRING,
+  facebookId: STRING,
+});
 
-module.exports = User
-
-/**
- * instanceMethods
- */
 User.prototype.correctPassword = function (candidatePwd) {
   return User.encryptPassword(candidatePwd, this.salt) === this.password
-}
+};
 
-/**
- * classMethods
- */
 User.generateSalt = function () {
   return crypto.randomBytes(16).toString('base64')
-}
+};
 
 User.encryptPassword = function (plainText, salt) {
   return crypto
@@ -41,17 +41,16 @@ User.encryptPassword = function (plainText, salt) {
     .update(plainText)
     .update(salt)
     .digest('hex')
-}
+};
 
-/**
- * hooks
- */
 const setSaltAndPassword = user => {
   if (user.changed('password')) {
-    user.salt = User.generateSalt()
-    user.password = User.encryptPassword(user.password, user.salt)
+    user.salt = User.generateSalt();
+    user.password = User.encryptPassword(user.password, user.salt);
   }
-}
+};
 
-User.beforeCreate(setSaltAndPassword)
-User.beforeUpdate(setSaltAndPassword)
+User.beforeCreate(setSaltAndPassword);
+User.beforeUpdate(setSaltAndPassword);
+
+module.exports = User;
