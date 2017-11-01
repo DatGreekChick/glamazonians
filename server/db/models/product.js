@@ -9,11 +9,10 @@ const Product = db.define('product', {
   },
   image: {
     type: STRING,
-    allowNull: false,
     defaultValue: 'http://placecage.com/400/400'
   },
   price: DECIMAL(12, 2),
-  quantityAvilable: INTEGER,
+  quantityAvailable: INTEGER,
   description: TEXT,
   tags: {
     type: ARRAY(STRING),
@@ -28,11 +27,11 @@ const Product = db.define('product', {
       }
       this.setDataValue('tags', tags);
     }
-  },
+  }
 });
 
 // classMethods
-Product.findSimilarByTag = (tag) => {
+Product.findSimilarByTag = tag => {
   this.findAll({
     where: {
       tags: {

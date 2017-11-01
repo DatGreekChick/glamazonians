@@ -1,27 +1,25 @@
-
-const {expect} = require('chai')
-const db = require('../index')
-const Order = db.model('Order')
+const { expect } = require('chai');
+const db = require('../index');
+const Order = require('./order');
 
 describe('Order model', () => {
   beforeEach(() => {
-    return db.sync({force: true})
+    return db.sync({ force: true });
   });
 
-    describe('correct Status', () => {
-      let newOrder;
+  describe('correct Status', () => {
+    let newOrder;
 
-      beforeEach(() => {
-        return Order.create({
-          status: 'Processing',
-        })
-          .then(order => {
-            newOrder = order;
-          })
-      })
-
-      it('returns true if the password is correct', () => {
-        expect(newOrder.status).to.be.equal('Processing')
+    beforeEach(() => {
+      return Order.create({
+        status: 'Processing'
+      }).then(order => {
+        newOrder = order;
       });
-    }); // end describe('correct Status')
+    });
+
+    it('returns true if the password is correct', () => {
+      expect(newOrder.status).to.be.equal('Processing');
+    });
+  }); // end describe('correct Status')
 }); // end describe('Order model')
