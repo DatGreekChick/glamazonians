@@ -1,15 +1,15 @@
-const Sequelize = require('sequelize')
-const db = require('../db')
+const { DECIMAL, INTEGER } = require('sequelize');
+const db = require('../db');
 
 const LineItem = db.define('lineItem', {
   purchasePrice: {
-    type: Sequelize.DECIMAL,
+    type: DECIMAL(12,2),
     allowNull: false
   },
   purchaseNum: {
-    type: Sequelize.INTEGER,
+    type: INTEGER,
     defaultValue: 1
   }
-})
+});
 
 module.exports = LineItem;

@@ -48,10 +48,15 @@ async function seed () {
 
   const lineItems = await Promise.all([
     LineItem.create({
+      purchasePrice: 21.00,
+      purchaseNum: 2,
     }),
     LineItem.create({
+      purchasePrice: 15.00,
     }),
     LineItem.create({
+      purchasePrice: 68.85,
+      purchaseNum: 3,
     }),
   ]);
 
@@ -59,10 +64,25 @@ async function seed () {
 
   const addresses = await Promise.all([
     Address.create({
+      line1: '123 Road Way',
+      line2: '',
+      city: 'New York',
+      state: 'NY',
+      zip: '10003',
     }),
     Address.create({
+      line1: '123 Montvale Road',
+      line2: '',
+      city: 'Montvale',
+      state: 'NJ',
+      zip: '07645',
     }),
     Address.create({
+      line1: '123 Houston Street',
+      line2: '',
+      city: 'New York',
+      state: 'NY',
+      zip: '10003',
     }),
   ]);
 
@@ -70,10 +90,28 @@ async function seed () {
 
   const products = await Promise.all([
     Product.create({
+      name: '',
+      image: '',
+      price: 25.50,
+      quantityAvailable: 10,
+      description: '',
+      tags: [],
     }),
     Product.create({
+      name: '',
+      image: '',
+      price: '',
+      quantityAvailable: 25,
+      description: '',
+      tags: [],
     }),
     Product.create({
+      name: '',
+      image: '',
+      price: '',
+      quantityAvailable: 30,
+      description: '',
+      tags: [],
     }),
   ]);
 

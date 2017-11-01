@@ -1,28 +1,22 @@
-const Sequelize = require('sequelize');
+const { STRING, DECIMAL, INTEGER, TEXT, ARRAY } = require('sequelize');
 const db = require('../db');
 
 const Product = db.define('product', {
   name: {
-    type: Sequelize.STRING,
+    type: STRING,
     unique: true,
     allowNull: false
   },
   image: {
-    type: Sequelize.STRING,
+    type: STRING,
     allowNull: false,
     defaultValue: 'http://placecage.com/400/400'
   },
-  price: {
-    type: Sequelize.DECIMAL(12, 2)
-  },
-  quantityAvilable: {
-    type: Sequelize.INTEGER,
-  },
-  description: {
-    type: Sequelize.TEXT
-  },
+  price: DECIMAL(12, 2),
+  quantityAvilable: INTEGER,
+  description: TEXT,
   tags: {
-    type: Sequelize.ARRAY(Sequelize.STRING),
+    type: ARRAY(STRING),
     defaultValue: [],
     set: function(tags) {
       tags = tags || [];
@@ -35,13 +29,9 @@ const Product = db.define('product', {
       this.setDataValue('tags', tags);
     }
   },
-
 });
 
-module.exports = Product;
-
 // classMethods
-
 Product.findSimilarByTag = (tag) => {
   this.findAll({
     where: {
@@ -51,3 +41,5 @@ Product.findSimilarByTag = (tag) => {
     }
   });
 };
+
+module.exports = Product;
