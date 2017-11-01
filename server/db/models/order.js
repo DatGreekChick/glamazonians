@@ -8,4 +8,6 @@ const Order = db.define('order', {
   }
 });
 
+// TODO/nice to have: add getPopularProducts method (go through line items, find product that's most purchased)
+
 module.exports = Order;

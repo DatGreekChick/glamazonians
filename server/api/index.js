@@ -3,6 +3,7 @@ module.exports = router
 
 router.use('/users', require('./users'));
 router.use('/products', require('./products'));
+// TODO: update vv to orders
 // router.use('/admin', require('./admin'));
 
 router.use((req, res, next) => {

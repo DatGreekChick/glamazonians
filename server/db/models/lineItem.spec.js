@@ -7,7 +7,7 @@ describe('lineItem model', () => {
     return db.sync({ force: true });
   });
 
-  describe('correct values', () => {
+  describe('purchasePrice and purchaseNum field', () => {
     let newLineItem;
 
     beforeEach(() => {
@@ -18,15 +18,18 @@ describe('lineItem model', () => {
       });
     });
 
-    it('returns true if new item price equals original purchase price', () => {
-      expect(newLineItem.purchasePrice).to.be.equal('34.99');
+    // Store, add getter/setter for the field to convert from decimal to integer and back
+    it('purchasePrice should never be null', () => {
+      const itemWithoutPrice = LineItem.build({ purchaseNum: 1 });
+
+      return itemWithoutPrice.save()
+      .then(() => { throw new Error("Promise should have rejected") })
+      .catch(err => {
+        expect(err).to.exist;
+      });
     });
 
-    it('returns true if the purchaseNum is a number', () => {
-      expect(newLineItem.purchaseNum).to.be.a('number');
-    });
-
-    it('returns true if the purchaseNum is the default value', () => {
+    it('purchaseNum is 1 by default', () => {
       expect(newLineItem.purchaseNum).to.equal(1);
     });
   }); // end describe('correctPassword')

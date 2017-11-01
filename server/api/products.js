@@ -49,6 +49,7 @@ router.get('/:tag', (req, res, next) => {
   .catch(next);
 });
 
+// TODO: write Order model method
 router.get('/popular', (req, res, next) => {
   Order.getPopularProducts({})
   .then(products => res.json(products))

@@ -4,12 +4,18 @@ module.exports = router
 
 
 // GET /api/orders
+// example using query string: /api/orders?status=pending
+
 router.get('/', (req, res, next) => {
-  Order.findAll({})
+  Order.findAll({
+    where: req.query
+  })
     .then(orders => res.json(orders))
     .catch(next)
 })
 
+
+// TODO: use query string instead in /api/orders
 // GET /api/orders/:status
 router.get('/:status', (req, res, next) => {
   Order.findAll({

@@ -7,6 +7,7 @@ describe('Order model', () => {
     return db.sync({ force: true });
   });
 
+  // TODO: 'status property'?
   describe('correct Status', () => {
     let newOrder;
 
@@ -18,6 +19,7 @@ describe('Order model', () => {
       });
     });
 
+    // TODO: update string
     it('returns true if the password is correct', () => {
       expect(newOrder.status).to.be.equal('Processing');
     });
