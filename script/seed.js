@@ -48,10 +48,15 @@ async function seed () {
 
   const lineItems = await Promise.all([
     LineItem.create({
+      purchasePrice: 21.00,
+      purchaseNum: 2,
     }),
     LineItem.create({
+      purchasePrice: 15.00,
     }),
     LineItem.create({
+      purchasePrice: 68.85,
+      purchaseNum: 3,
     }),
   ]);
 
@@ -59,21 +64,52 @@ async function seed () {
 
   const addresses = await Promise.all([
     Address.create({
+      line1: '123 Road Way',
+      line2: '',
+      city: 'New York',
+      state: 'NY',
+      zip: '10003',
     }),
     Address.create({
+      line1: '123 Montvale Road',
+      line2: '',
+      city: 'Montvale',
+      state: 'NJ',
+      zip: '07645',
     }),
     Address.create({
+      line1: '123 Houston Street',
+      line2: '',
+      city: 'New York',
+      state: 'NY',
+      zip: '10003',
     }),
   ]);
 
   console.log(`seeded ${addresses.length} addresses`);
 
+  // using default images here for the time being
   const products = await Promise.all([
     Product.create({
+      name: 'Archer Jacket',
+      price: 25.50,
+      quantityAvailable: 10,
+      description: 'Totally not Katniss from The Hunger Games',
+      tags: ['katniss', 'tribute', 'archer', 'jacket'],
     }),
     Product.create({
+      name: 'Courageous Forest Princess',
+      price: 25.99,
+      quantityAvailable: 25,
+      description: 'Totally not Merida from Brave',
+      tags: ['merida', 'brave', 'forest', 'princess', 'courageous'],
     }),
     Product.create({
+      name: 'K Billy Skin Suit',
+      price: 35.50,
+      quantityAvailable: 30,
+      description: 'Totally not Uma Thurman in Kill Bill.',
+      tags: ['uma', 'kill', 'bill', 'yellow'],
     }),
   ]);
 
@@ -81,10 +117,13 @@ async function seed () {
 
   const orders = await Promise.all([
     Order.create({
+      status: 'Created'
     }),
     Order.create({
+      status: 'Processing'
     }),
     Order.create({
+      status: 'Completed'
     }),
   ]);
 

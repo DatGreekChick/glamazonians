@@ -1,4 +1,4 @@
-const {STRING} = require('sequelize');
+const { STRING } = require('sequelize');
 const db = require('../db');
 
 const Address = db.define('address', {
@@ -6,9 +6,7 @@ const Address = db.define('address', {
     type: STRING,
     allowNull: false,
   },
-  line2: {
-    type: STRING,
-  },
+  line2: STRING,
   city: {
     type: STRING,
     allowNull: false,
@@ -17,9 +15,10 @@ const Address = db.define('address', {
     type: STRING,
     allowNull: false,
   },
+  zip: {
+    type: STRING,
+    allowNull: false,
+  }
 });
-
-
-
 
 module.exports = Address;
