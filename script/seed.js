@@ -52,7 +52,7 @@ async function seed () {
     LineItem.create({
     }),
     LineItem.create({
-    })
+    }),
   ]);
 
   console.log(`seeded ${lineItems.length} line items`);
@@ -63,7 +63,7 @@ async function seed () {
     Address.create({
     }),
     Address.create({
-    })
+    }),
   ]);
 
   console.log(`seeded ${addresses.length} addresses`);
@@ -74,7 +74,7 @@ async function seed () {
     Product.create({
     }),
     Product.create({
-    })
+    }),
   ]);
 
   console.log(`seeded ${products.length} products`);
@@ -85,7 +85,7 @@ async function seed () {
     Order.create({
     }),
     Order.create({
-    })
+    }),
   ]);
 
   console.log(`seeded ${orders.length} orders`);
