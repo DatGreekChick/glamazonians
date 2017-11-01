@@ -88,30 +88,28 @@ async function seed () {
 
   console.log(`seeded ${addresses.length} addresses`);
 
+  // using default images here for the time being
   const products = await Promise.all([
     Product.create({
-      name: '',
-      image: '',
+      name: 'Archer Jacket',
       price: 25.50,
       quantityAvailable: 10,
-      description: '',
-      tags: [],
+      description: 'Totally not Katniss from The Hunger Games',
+      tags: ['katniss', 'tribute', 'archer', 'jacket'],
     }),
     Product.create({
-      name: '',
-      image: '',
-      price: '',
+      name: 'Courageous Forest Princess',
+      price: 25.99,
       quantityAvailable: 25,
-      description: '',
-      tags: [],
+      description: 'Totally not Merida from Brave',
+      tags: ['merida', 'brave', 'forest', 'princess', 'courageous'],
     }),
     Product.create({
-      name: '',
-      image: '',
-      price: '',
+      name: 'K Billy Skin Suit',
+      price: 35.50,
       quantityAvailable: 30,
-      description: '',
-      tags: [],
+      description: 'Totally not Uma Thurman in Kill Bill.',
+      tags: ['uma', 'kill', 'bill', 'yellow'],
     }),
   ]);
 
@@ -119,10 +117,13 @@ async function seed () {
 
   const orders = await Promise.all([
     Order.create({
+      status: 'Created'
     }),
     Order.create({
+      status: 'Processing'
     }),
     Order.create({
+      status: 'Completed'
     }),
   ]);
 
