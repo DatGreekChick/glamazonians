@@ -79,7 +79,7 @@ describe('Product routes', () => {
         });
     });
 
-    it.only('PUT /api/products/:productId', () => {
+    it('PUT /api/products/:productId', () => {
       return request(app)
         .put('/api/products/' + costumeId)
         .send({
@@ -88,7 +88,7 @@ describe('Product routes', () => {
         .expect(202)
         .expect(function(res) {
           console.log(res.body);
-          expect(res.body.name).to.equal('Angry Juggle Woman');
+          expect(res.body.name).to.be.equal('Angry Juggle Woman');
         });
     });
 

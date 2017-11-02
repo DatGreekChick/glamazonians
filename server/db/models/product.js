@@ -1,4 +1,4 @@
-const { STRING, INTEGER, TEXT, ARRAY } = require('sequelize');
+const { STRING, INTEGER, TEXT, ARRAY, Op: { contains } } = require('sequelize');
 const db = require('../db');
 
 const Product = db.define(
@@ -73,11 +73,11 @@ Product.prototype.addTag = function(tag) {
 };
 
 // classMethods
-Product.findSimilarByTag = tag => {
-  this.findAll({
+Product.findSimilarByTag = function(tag) {
+  return this.findAll({
     where: {
       tags: {
-        $contains: [tag]
+        [contains]: [tag]
       }
     }
   });

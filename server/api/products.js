@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Product, Order } = require('../db/models');
+const { Product, Order, Review } = require('../db/models');
 module.exports = router;
 
 // GET /api/products
@@ -9,9 +9,16 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
+// GET /api/products/tags
+router.get('/tags', (req, res, next) => {
+  Product.findSimilarByTag(req.query.tag)
+    .then(products => res.json(products))
+    .catch(next);
+});
+
 // GET /api/products/:productId
 router.get('/:productId', (req, res, next) => {
-  Product.findById(req.params.productId)
+  Product.findById(+req.params.productId, { include: { model: Review } })
     .then(product => res.json(product))
     .catch(next);
 });
@@ -37,19 +44,5 @@ router.delete('/:productId', (req, res, next) => {
     where: { id: +req.params.productId }
   })
     .then(() => res.status(204).end())
-    .catch(next);
-});
-
-// GET /api/products
-router.get('/:tag', (req, res, next) => {
-  Product.findSimilarByTag(req.params.tag)
-    .then(products => res.json(products))
-    .catch(next);
-});
-
-// TODO: write Order model method
-router.get('/popular', (req, res, next) => {
-  Order.getPopularProducts({})
-    .then(products => res.json(products))
     .catch(next);
 });
