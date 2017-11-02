@@ -35,7 +35,6 @@ describe('Product model)', () => {
       expect(costume.quantityAvailable).to.equal(15);
     });
 
-
     it('returns accurate tag', () => {
       expect(costume.tags[0]).to.equal('cat');
     });
@@ -56,5 +55,11 @@ describe('Product model)', () => {
         expect(costume2.priceInDollars).to.equal('50.00')
       });
     });
+    describe('Product instanceMethods', () => {
+      it('Product. prototype.removeTag removes a tag when called', () => {
+        costume2.removeTag('meow');
+        expect(costume2.tags).to.deep.equal(['cage', 'sexy']);
+      })
+    })
   });
 });

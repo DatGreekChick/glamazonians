@@ -55,6 +55,17 @@ const Product = db.define('product', {
   },
 });
 
+// instanceMethods
+Product.prototype.removeTag = function(tag) {
+  let arrCopy = this.getDataValue('tags');
+  let index = arrCopy.indexOf(tag);
+
+  if(index !== -1){
+    arrCopy.splice(index, 1);
+  }
+  this.setDataValue('tags', arrCopy);
+};
+
 // classMethods
 Product.findSimilarByTag = tag => {
   this.findAll({
