@@ -49,7 +49,8 @@ const Product = db.define('product', {
   getterMethods: {
     priceInDollars: function() {
       let pennies = this.getDataValue('price');
-      return (pennies/100).toString();
+
+      return parseFloat(pennies/100).toFixed(2);
     }
   },
 });
