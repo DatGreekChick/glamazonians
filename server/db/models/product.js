@@ -1,4 +1,10 @@
-const { STRING, DECIMAL, INTEGER, TEXT, ARRAY } = require('sequelize');
+const {
+  STRING,
+  DECIMAL,
+  INTEGER,
+  TEXT,
+  ARRAY
+} = require('sequelize');
 const db = require('../db');
 
 const Product = db.define('product', {
@@ -11,7 +17,18 @@ const Product = db.define('product', {
     type: STRING,
     defaultValue: 'http://placecage.com/400/400'
   },
-  price: DECIMAL(12, 2, 'int'),
+  price: {
+    type: INTEGER,
+    set: function(val){
+      let dollars;
+      if(typeof val === 'string') {
+        dollars = parseInt(val);
+      } else {
+        dollars = val;
+      }
+      this.setDataValue('price', dollars*100);
+    }
+  },
   quantityAvailable: INTEGER,
   description: TEXT,
   tags: {
@@ -28,6 +45,13 @@ const Product = db.define('product', {
       this.setDataValue('tags', tags);
     }
   }
+}, {
+  getterMethods: {
+    priceInDollars: function() {
+      let pennies = this.getDataValue('price');
+      return (pennies/100).toString();
+    }
+  },
 });
 
 // classMethods
