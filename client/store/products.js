@@ -20,8 +20,9 @@ const update = product => ({ type: UPDATE, product })
 export const fetchAllProducts = () =>
   dispatch =>
     axios.get('/api/products')
-      .then(res =>
-        dispatch(fetch(res.data)))
+      .then(res => {
+        console.log('bananaas');
+        dispatch(fetch(res.data))})
       .catch(err => console.log(err))
 
 export const getSingleProduct = id =>
