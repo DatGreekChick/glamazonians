@@ -12,7 +12,9 @@ describe('lineItem model', () => {
 
     beforeEach(() => {
       return LineItem.create({
-        purchasePrice: 34.99
+        // the purchasePrice val should be coming from the Product.price val
+          //which is in pennies
+        purchasePrice: 3490 //34.90
       }).then(lineItem => {
         newLineItem = lineItem;
       });
@@ -30,6 +32,10 @@ describe('lineItem model', () => {
         .catch(err => {
           expect(err).to.exist;
         });
+    });
+
+    it('stores the Product.price in pennies',  () => {
+      expect(newLineItem.purchasePrice).to.be.equal(3490);
     });
 
     it('purchaseNum is 1 by default', () => {
