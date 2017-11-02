@@ -15,7 +15,7 @@ describe('Product routes', () => {
     let costumeName = 'Happy Lady Does Gardening';
     let costumeDescription =
       'A velcro and spandex costume with blue boots and a yellow cape';
-    let costumePrice = '10.00';
+    let costumePrice = 10.0;
     let costumeQuantity = 30;
     let costumeTags = 'superhero, marvel, action';
     let randomTag = 'marvel';
@@ -32,7 +32,7 @@ describe('Product routes', () => {
       });
     });
 
-    it('GET /api/products', () => {
+    xit('GET /api/products', () => {
       return request(app)
         .get('/api/products')
         .expect(200)
@@ -40,27 +40,27 @@ describe('Product routes', () => {
           expect(res.body).to.be.an('array');
           expect(res.body[0].name).to.be.equal(costumeName);
           expect(res.body[0].description).to.be.equal(costumeDescription);
-          expect(res.body[0].priceInDollars).to.be.equal(costumePrice);
+          expect(res.body[0].price).to.be.equal(costumePrice);
           expect(res.body[0].quantityAvailable).to.be.equal(costumeQuantity);
           expect(res.body[0].tags).to.have.lengthOf(3);
         });
     });
 
-    it('GET /api/products/:productId', () => {
+    xit('GET /api/products/:productId', () => {
       return request(app)
         .get(`/api/products/${costumeId}`)
         .expect(200)
         .then(res => {
           expect(res.body.name).to.be.equal(costumeName);
           expect(res.body.description).to.be.equal(costumeDescription);
-          expect(res.body.priceInDollars).to.be.equal(costumePrice);
+          expect(res.body.price).to.be.equal(costumePrice);
           expect(res.body.quantityAvailable).to.be.equal(costumeQuantity);
           expect(res.body.tags).to.have.lengthOf(3);
           expect(res.body.id).to.be.equal(costumeId);
         });
     });
 
-    it('POST /api/products/', () => {
+    xit('POST /api/products/', () => {
       return request(app)
         .post('/api/products')
         .send({
@@ -71,7 +71,7 @@ describe('Product routes', () => {
         })
         .expect(201)
         .then(res => {
-          const newProduct = res.body;
+          const newProduct = req.body;
           return Product.findById(newProduct.id);
         })
         .then(foundProduct => {
@@ -79,20 +79,22 @@ describe('Product routes', () => {
         });
     });
 
-    it('PUT /api/products/:productId', () => {
+    xit('PUT /api/products/:productId', () => {
       return request(app)
-        .put('/api/products/' + costumeId)
+        .put(`/api/products/${costumeId}`)
         .send({
           name: 'Angry Juggle Woman'
         })
-        .expect(202)
-        .expect(function(res) {
-          console.log(res.body);
-          expect(res.body.name).to.be.equal('Angry Juggle Woman');
+        .expect(201)
+        .then(res => {
+          return Product.findById(costumeId);
+        })
+        .then(product => {
+          expect(product.name).to.be.equal('Angry Juggle Woman');
         });
     });
 
-    it('GET /api/products/:tag', () => {
+    xit('GET /api/products/:tag', () => {
       return request(app)
         .get(`/api/products/${randomTag}`)
         .expect(200)
@@ -103,7 +105,7 @@ describe('Product routes', () => {
         });
     });
 
-    it('GET /api/products/popular', () => {
+    xit('GET /api/products/popular', () => {
       return request(app)
         .get('/api/products/popular')
         .expect(200)

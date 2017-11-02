@@ -21,7 +21,7 @@ describe('User routes', () => {
       });
     });
 
-    it('GET /api/users', () => {
+    xit('GET /api/users', () => {
       return request(app)
         .get('/api/users')
         .expect(200)
@@ -56,7 +56,7 @@ describe('User routes', () => {
       });
     });
 
-    it('returns the JSON of the user based on the id', function() {
+    xit('returns the JSON of the user based on the id', function() {
       return agent
         .get('/api/users/' + user.id)
         .expect(200)
@@ -68,7 +68,7 @@ describe('User routes', () => {
           expect(res.body.name).to.equal('Shelby');
         });
     });
-    it('returns a 404 error if the ID is not correct', function() {
+    xit('returns a 404 error if the ID is not correct', function() {
       return agent.get('/api/users/12').expect(404);
     });
   });
