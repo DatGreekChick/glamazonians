@@ -19,14 +19,14 @@ const Product = db.define('product', {
   },
   price: {
     type: INTEGER,
-    set: function(val){
+    set: function(val) {
       let dollars;
-      if(typeof val === 'string') {
+      if (typeof val === 'string') {
         dollars = parseInt(val);
       } else {
         dollars = val;
       }
-      this.setDataValue('price', dollars*100);
+      this.setDataValue('price', dollars * 100);
     }
   },
   quantityAvailable: INTEGER,
@@ -50,19 +50,27 @@ const Product = db.define('product', {
     priceInDollars: function() {
       let pennies = this.getDataValue('price');
 
-      return parseFloat(pennies/100).toFixed(2);
+      return parseFloat(pennies / 100).toFixed(2);
     }
   },
 });
 
 // instanceMethods
 Product.prototype.removeTag = function(tag) {
+  tag = tag.toString()
   let arrCopy = this.getDataValue('tags');
-  let index = arrCopy.indexOf(tag);
+  let index = arrCopy.indexOf(tag.toLowerCase());
 
-  if(index !== -1){
+  if (index !== -1) {
     arrCopy.splice(index, 1);
   }
+  this.setDataValue('tags', arrCopy);
+};
+
+Product.prototype.addTag =  function(tag) {
+  tag = tag.toString();
+  let arrCopy = this.getDataValue('tags');
+  arrCopy.push(tag.toLowerCase());
   this.setDataValue('tags', arrCopy);
 };
 

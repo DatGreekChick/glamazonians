@@ -1,10 +1,14 @@
-const { expect } = require('chai');
+const {
+  expect
+} = require('chai');
 const db = require('../index');
 const Product = db.model('product');
 
 describe('Product model)', () => {
   beforeEach(() => {
-    return db.sync({ force: true });
+    return db.sync({
+      force: true
+    });
   });
 
   describe('Product model attributes', () => {
@@ -55,11 +59,32 @@ describe('Product model)', () => {
         expect(costume2.priceInDollars).to.equal('50.00')
       });
     });
+
     describe('Product instanceMethods', () => {
-      it('Product. prototype.removeTag removes a tag when called', () => {
+      it('Product instance method removeTag removes a tag when called', () => {
         costume2.removeTag('meow');
         expect(costume2.tags).to.deep.equal(['cage', 'sexy']);
-      })
-    })
+      });
+
+      it('Product instance method removeTag is NOT case sensitive', () => {
+        costume2.removeTag('Meow');
+        expect(costume2.tags).to.deep.equal(['cage', 'sexy']);
+      });
+
+      it('Product instance method addTag adds a tag when called', () => {
+        costume2.addTag('bees');
+        expect(costume2.tags).to.deep.equal(['cage', 'meow', 'sexy', 'bees']);
+      });
+
+      it('Product instance method addTag adds a tag in lower case', () => {
+        costume2.addTag('bEeS');
+        expect(costume2.tags).to.deep.equal(['cage', 'meow', 'sexy', 'bees']);
+      });
+
+      it('Product instance addTag converts integer tags into strings', () => {
+        costume.addTag(666);
+        expect(costume.tags).to.deep.equal(['cat', 'meow', 'sexy', '666']);
+      });
+    });
   });
 });
