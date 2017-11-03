@@ -13,7 +13,7 @@ export { Careers } from './Careers';
 export { ContactUs } from './ContactUs';
 export { FAQs } from './FAQs';
 export { Orders } from './Orders';
-export { AccountInfo } from './AccountInfo';
+export { MyAccount } from './MyAccount';
 export { Cart } from './Cart';
 export { SingleReview } from './SingleReview';
 export { ThankYou } from './ThankYou';
