@@ -26,6 +26,7 @@ import {
   SingleUser,
   Users
 } from './components';
+
 import { me, fetchAllProducts } from './store';
 
 class Routes extends Component {
@@ -34,7 +35,7 @@ class Routes extends Component {
   }
 
   render() {
-    const { isLoggedIn, isAdmin } = this.props;
+    const { isLoggedIn, isAdmin, x } = this.props;
 
     return (
       <Router history={history}>

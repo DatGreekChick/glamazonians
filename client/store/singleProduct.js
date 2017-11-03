@@ -1,8 +1,7 @@
 'use strict';
 import axios from 'axios';
 
-const GET_PRODUCT = 'GET_PRODUCT',
-      UPDATE_PRODUCT =
+const GET_PRODUCT = 'GET_PRODUCT';
 
 /**
  * ACTION TYPES
