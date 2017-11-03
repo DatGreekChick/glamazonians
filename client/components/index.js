@@ -7,6 +7,7 @@ export { default as Main } from './main';
 export { default as UserHome } from './user-home';
 export { Login, Signup } from './auth-form';
 export { AllProducts } from './AllProducts';
+export { SingleProduct } from './SingleProduct';
 export { About } from './About';
 export { Careers } from './Careers';
 export { ContactUs } from './ContactUs';
