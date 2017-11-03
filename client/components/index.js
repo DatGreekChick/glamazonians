@@ -17,3 +17,8 @@ export { MyAccount } from './MyAccount';
 export { Cart } from './Cart';
 export { SingleReview } from './SingleReview';
 export { ThankYou } from './ThankYou';
+export { AddReviewForm } from './AddReviewForm';
+export { SingleOrder } from './SingleOrder';
+export { Users } from './Users';
+export { SingleUser } from './SingleUser';
+export { AddProductForm } from './AddProductForm';

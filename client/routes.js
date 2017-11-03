@@ -19,7 +19,9 @@ import {
   MyAccount,
   Cart,
   SingleReview,
-  ThankYou
+  ThankYou,
+  AddReviewForm,
+  SingleOrder
 } from './components';
 import { me, fetchAllProducts } from './store';
 
@@ -35,7 +37,6 @@ class Routes extends Component {
       <Router history={history}>
         <Main>
           <Switch>
-            {/* Routes placed here are available to all visitors */}
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             <Route path="/about" component={About} />
@@ -53,17 +54,26 @@ class Routes extends Component {
               exact path="/products/:productId/currentReview"
               component={SingleReview}
             />
+            <Route
+              exact path="/products/:productId/addReview"
+              component={AddReviewForm}
+            />
             <Route exact path="/products" component={AllProducts} />
             {isLoggedIn && (
               <Switch>
-                {/* Routes placed here are only available after logging in */}
                 <Route exact path="/home" component={UserHome} />
                 <Route exact path="/myAccount" component={MyAccount} />
+                <Route exact path="/orders" component={Orders} />
+                <Route path="/orders/:orderId" component={SingleOrder} />
               </Switch>
             )}
             {isAdmin && (
               <Switch>
-                <Route path="/orders" component={Orders} />
+                <Route exact path="/users" component={Users} />
+                <Route path="/users/:userId" component={SingleUser} />
+                <Route exact path="/orders" component={Orders} />
+                <Route path="/orders/:orderId" component={SingleOrder} />
+                <Route exact path="/addProduct" component={AddProductForm} />
               </Switch>
             )}
             {/* Displays our Login component as a fallback */}
