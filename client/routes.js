@@ -16,7 +16,7 @@ import {
   ContactUs,
   Careers,
   FAQs,
-  AccountInfo,
+  MyAccount,
   Cart,
   SingleReview,
   ThankYou
@@ -59,7 +59,7 @@ class Routes extends Component {
               <Switch>
                 {/* Routes placed here are only available after logging in */}
                 <Route path="/home" component={UserHome} />
-                <Route path="/accountInfo" component={AccountInfo} />
+                <Route path="/myAccount" component={MyAccount} />
               </Switch>
             )}
             {isAdmin && (
