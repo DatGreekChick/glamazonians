@@ -6,14 +6,14 @@ import user from './user'
 import cart from './cart';
 import products from './products';
 
-const reducer = combineReducers({user, cart, products})
+const reducer = combineReducers({user, cart, products});
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({collapsed: true})
-))
-const persistedState = localStorage.getItem('store') ? JSON.parse(localStorage.getItem('store')) : {}
+));
+const persistedState = localStorage.getItem('store') ? JSON.parse(localStorage.getItem('store')) : {};
 
-const store = createStore(reducer, persistedState, middleware)
+const store = createStore(reducer, persistedState, middleware);
 
 store.subscribe(() => localStorage.setItem('store', JSON.stringify(store.getState())));
 

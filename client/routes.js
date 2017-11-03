@@ -33,44 +33,42 @@ class Routes extends Component {
 
     return (
       <Router history={history}>
-        <Main>
-          <Switch>
-            {/* Routes placed here are available to all visitors */}
-            <Route path="/" component={Main} />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/about" component={About} />
-            <Route path="/contact-us" component={ContactUs} />
-            <Route path="/careers" component={Careers} />
-            <Route path="/faqs" component={FAQs} />
-            <Route path="/cart" component={Cart} />
-            <Route path="/thank-you" component={ThankYou} />
-            <Route
-              exact
-              path="/products/:productId"
-              component={SingleProduct}
-            />
-            <Route
-              path="/products/:productId/currentReview"
-              component={SingleReview}
-            />
-            <Route exact path="/products" component={AllProducts} />
-            {isLoggedIn && (
-              <Switch>
-                {/* Routes placed here are only available after logging in */}
-                <Route path="/home" component={UserHome} />
-                <Route path="/myAccount" component={MyAccount} />
-              </Switch>
-            )}
-            {isAdmin && (
-              <Switch>
-                <Route path="/orders" component={Orders} />
-              </Switch>
-            )}
-            {/* Displays our Login component as a fallback */}
-            <Route component={Login} />
-          </Switch>
-        </Main>
+        <Switch>
+          {/* Routes placed here are available to all visitors */}
+          <Route exact path="/" component={Main} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Signup} />
+          <Route path="/about" component={About} />
+          <Route path="/contact-us" component={ContactUs} />
+          <Route path="/careers" component={Careers} />
+          <Route path="/faqs" component={FAQs} />
+          <Route path="/cart" component={Cart} />
+          <Route path="/thank-you" component={ThankYou} />
+          <Route
+            exact
+            path="/products/:productId"
+            component={SingleProduct}
+          />
+          <Route
+            exact path="/products/:productId/currentReview"
+            component={SingleReview}
+          />
+          <Route exact path="/products" component={AllProducts} />
+          {isLoggedIn && (
+            <Switch>
+              {/* Routes placed here are only available after logging in */}
+              <Route exact path="/home" component={UserHome} />
+              <Route exact path="/myAccount" component={MyAccount} />
+            </Switch>
+          )}
+          {isAdmin && (
+            <Switch>
+              <Route path="/orders" component={Orders} />
+            </Switch>
+          )}
+          {/* Displays our Login component as a fallback */}
+          <Route component={Login} />
+        </Switch>
       </Router>
     );
   }
