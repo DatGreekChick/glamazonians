@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router';
 import { deleteItem } from '../store';
 
 // implement a way to increase quantity with addItem reducer so that the items aren't just pushed into an array over and over
@@ -36,4 +37,4 @@ const mapDispatch = (dispatch) => ({
     }
 });
 
-export default connect(mapState, mapDispatch)(Cart);
+export default withRouter(connect(mapState, mapDispatch)(Cart));
