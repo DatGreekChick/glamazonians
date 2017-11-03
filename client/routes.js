@@ -21,7 +21,10 @@ import {
   SingleReview,
   ThankYou,
   AddReviewForm,
-  SingleOrder
+  SingleOrder,
+  AddProductForm,
+  SingleUser,
+  Users
 } from './components';
 import { me, fetchAllProducts } from './store';
 
