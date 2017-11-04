@@ -29,7 +29,7 @@ const Product = db.define('product', {
       this.setDataValue('price', dollars * 100);
     }
   },
-  quantityInCart: { type: INTEGER, defaultValue: 1 },
+  quantityInCart: { type: INTEGER, defaultValue: 0 },
   quantityAvailable: INTEGER,
   description: TEXT,
   tags: {
