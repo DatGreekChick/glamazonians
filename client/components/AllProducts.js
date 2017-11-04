@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router';
-import { addItem } from '../store';
+import { addItem, increaseItem } from '../store';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 export class AllProducts extends Component {
 
@@ -15,6 +16,7 @@ export class AllProducts extends Component {
 
 return (
       <div>
+      <NotificationContainer />
         <h1>Products</h1>
         <div>
           { this.props.products &&
@@ -25,7 +27,15 @@ return (
                   <div>{product.name}</div>
                   <div>{product.priceInDollars}</div>
                 </Link>
-                <button onClick={() => {this.props.onAdd(product)}}>ADD</button>
+                <button
+className="btn btn-info" onClick={() => {
+                NotificationManager.success(`You added ${product.name} to your cart`, 'Added Item');
+                  if (this.props.cart.indexOf(product) > -1){
+                    this.props.onIncrease(product)
+                  } else {
+                    this.props.onAdd(product);
+                  }
+                  }}>ADD</button>
                 </div>
               )
             )
@@ -47,7 +57,11 @@ const mapState = (state) => {
   const mapDispatch = (dispatch) => ({
     onAdd (product) {
         dispatch(addItem(product))
+      },
+    onIncrease (product) {
+          dispatch(increaseItem(product))
+        }
       }
-  });
+  );
 
 export default withRouter(connect(mapState, mapDispatch)(AllProducts));
