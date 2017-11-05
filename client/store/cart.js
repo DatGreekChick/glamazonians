@@ -33,10 +33,6 @@ export const decreaseItem = item =>
   dispatch =>
     dispatch(decrease(item));
 
-export const increaseItem = item =>
-dispatch =>
-dispatch(increase(item));
-
 /**
 * REDUCER
 */
