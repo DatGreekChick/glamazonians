@@ -28,13 +28,13 @@ return (
                   <div>{product.priceInDollars}</div>
                 </Link>
                 <button
-                    onClick={() => {
-                    NotificationManager.success(`You added ${product.name} to your cart`, 'Added Item');
-                    if (this.props.cart.filter((el) => el.id === product.id).length > 0){
-                      this.props.onIncrease(product)
-                    } else {
-                      this.props.onAdd(product);
-                    }
+className="btn btn-info" onClick={() => {
+                NotificationManager.success(`You added ${product.name} to your cart`, 'Added Item');
+                  if (this.props.cart.indexOf(product) > -1){
+                    this.props.onIncrease(product)
+                  } else {
+                    this.props.onAdd(product);
+                  }
                   }}>ADD</button>
                 </div>
               )
