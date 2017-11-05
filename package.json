@@ -14,7 +14,8 @@
     "postinstall": "touch secrets.js",
     "seed": "node script/seed.js",
     "start": "node server",
-    "start-dev": "NODE_ENV='development' nodemon server -e html,js,scss --ignore public",
+    "start-dev": "npm run build-client-watch & npm run start-server",
+    "start-server": "NODE_ENV='development' nodemon server -e html,js,scss --ignore public",
     "test": "NODE_ENV='test' DATABASE_URL='postgres://localhost:5432/glamazonians-test' mocha ./server/**/*.spec.js ./server/**/**/*.spec.js ./client/**/*.spec.js --watch --compilers js:babel-register"
   },
   "author": "",
@@ -73,9 +74,7 @@
     "sass-loader": "^6.0.0",
     "style-loader": "^0.13.1",
     "supertest": "^3.0.0",
-    "webpack": "^3.8.1",
-    "webpack-dev-middleware": "^1.12.0",
-    "webpack-hot-middleware": "^2.20.0",
+    "webpack": "^2.2.1",
     "webpack-livereload-plugin": "^1.0.0"
   }
 }
