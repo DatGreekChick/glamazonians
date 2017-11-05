@@ -3,10 +3,12 @@
 const ADD = 'ADD'
 const UPDATE = 'UPDATE'
 const REMOVE = 'REMOVE'
+const INCREASE = 'INCREASE'
 
 const add = item => ({type: ADD, item })
 const remove = id => ({type: REMOVE, id});
 const update = item => ({type: UPDATE, item})
+const increase = item => ({type: INCREASE, item});
 
 export const addItem = item =>
 dispatch =>
@@ -19,6 +21,10 @@ dispatch(update(item));
 export const deleteItem = id =>
 dispatch =>
 dispatch(remove(id));
+
+export const increaseItem = item =>
+dispatch =>
+dispatch(increase(item));
 
 /**
 * REDUCER
@@ -33,6 +39,11 @@ switch (action.type) {
     return state.map(item => (
       action.item.id === item.id ? action.item : item
     ));
+  case INCREASE:
+  action.item.quantityInCart++;
+  return state.map(item =>
+    (action.item.id === item.id ?
+  action.item : item));
   default:
     return state
   }
