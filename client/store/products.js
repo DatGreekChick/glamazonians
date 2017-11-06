@@ -21,7 +21,7 @@ export const fetchAllProducts = () =>
   dispatch =>
     axios.get('/api/products')
       .then(res => {
-        console.log('bananaas');
+        console.log('bananaas'); // TODO: keep console.logs out of master
         dispatch(fetch(res.data))})
       .catch(err => console.log(err))
 
@@ -29,14 +29,14 @@ export const getSingleProduct = id =>
   dispatch =>
     axios.get(`/api/products/${id}`)
       .then(res =>
-        dispatch(update(res.data)))
+        dispatch(update(res.data))) // TODO: why update in getSingleProduct?
       .catch(err => console.log(err))
 
 export const postProduct = product =>
   dispatch =>
     axios.post('/api/products', product)
       .then(res =>
-        dispatch(create(res.data || product)))
+        dispatch(create(res.data)))
       .catch(err => console.log(err))
 
 export const updateProduct = (id, product) =>
@@ -45,6 +45,13 @@ export const updateProduct = (id, product) =>
       .then(res =>
         dispatch(update(res.data)))
       .catch(err => console.log(err))
+
+// export const updateProduct = (id, product) =>
+//   dispatch => {
+//     dispatch(update(product)))
+//     axios.put(`/api/products/${id}`, product)
+//       .catch(err => console.log(err))
+//   }
 
 export const deleteProduct = id =>
   dispatch => {

@@ -5,6 +5,7 @@ import { withRouter } from 'react-router';
 import { addItem, increaseItem } from '../store';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 
+{/* TODO make this a dumb component */}
 export class AllProducts extends Component {
 
   componentDidMount(){
@@ -19,14 +20,17 @@ return (
       <NotificationContainer />
         <h1>Products</h1>
         <div>
-          { this.props.products &&
-            this.props.products.map(product => (
+          { this.props.products.map(product => (
               <div key={product.id}>
                 <Link to={`/products/${product.id}`}>
                   <img src={product.image} />
                   <div>{product.name}</div>
                   <div>{product.priceInDollars}</div>
                 </Link>
+                {/*
+                  TODO: make this a helper function
+                  onClick = () => this.handleClick(product)
+                 */}
                 <button
 className="btn btn-info" onClick={() => {
                 NotificationManager.success(`You added ${product.name} to your cart`, 'Added Item');

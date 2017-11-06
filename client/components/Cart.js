@@ -13,6 +13,7 @@ export class Cart extends Component {
   }
 
   getCartTotal() {
+    // TODO: update to const or let
     var individualPrices = this.props.cart.map(
       el => el.quantityInCart * el.price / 100
     );
@@ -25,6 +26,14 @@ export class Cart extends Component {
   }
 
   render() {
+    /*
+      TODO:
+      - break out into multiple components
+        - CartItem
+        - EmptyCart
+        - CartTotal
+      - make HTML more semantic (table instead of divs)
+    */
     let cart;
     if (this.props.cart.length) {
       cart = (
@@ -48,6 +57,7 @@ export class Cart extends Component {
               </div>
               <div className="product-price"> {item.priceInDollars}</div>
               <div className="product-quantity">
+                {/* TODO: make button onClick functions component methods? */}
                 <button
                   onClick={() => {
                     NotificationManager.success(

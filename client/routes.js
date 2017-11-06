@@ -54,8 +54,9 @@ class Routes extends Component {
               path="/products/:productId"
               component={SingleProduct}
             />
+            {/* TODO: update this route to have a particular review id? */}
             <Route
-              exact path="/products/:productId/currentReview"
+              exact path="/products/:productId/reviews/:reviewId"
               component={SingleReview}
             />
             <Route

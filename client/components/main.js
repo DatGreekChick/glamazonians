@@ -39,6 +39,7 @@ const Main = ({ children, handleClick, isLoggedIn }) => {
         <Link to="/about">
           <span>About Us</span>
         </Link>
+        {/* TODO: remove dead links */}
         <Link to="/contact-us">
           <span>Contact Us</span>
         </Link>
