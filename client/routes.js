@@ -12,9 +12,8 @@ import {
   AllProducts,
   SingleProduct,
   About,
-  MyAccount,
   Cart,
-  AddProductForm,
+  AddProductForm
 } from './components';
 
 import { me, fetchAllProducts } from './store';
@@ -25,7 +24,7 @@ class Routes extends Component {
   }
 
   render() {
-    const { isLoggedIn, isAdmin, x } = this.props;
+    const { isLoggedIn, isAdmin } = this.props;
 
     return (
       <Router history={history}>
@@ -43,14 +42,12 @@ class Routes extends Component {
             <Route exact path="/products" component={AllProducts} />
             {isLoggedIn && (
               <Switch>
+                <Route exact path="/products" component={AllProducts} />
                 <Route exact path="/home" component={UserHome} />
-                <Route exact path="/myAccount" component={MyAccount} />
               </Switch>
             )}
             {isAdmin && (
               <Switch>
-                <Route exact path="/users" component={Users} />
-                <Route path="/users/:userId" component={SingleUser} />
                 <Route exact path="/addProduct" component={AddProductForm} />
               </Switch>
             )}
