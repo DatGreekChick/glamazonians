@@ -18,7 +18,7 @@ class SingleProduct extends Component {
 
   render() {
     const product = this.props.product;
-    console.log(product.reviews)
+    console.log(this.props.cart)
     return (
       <div className='products single-product'>
         <h1 className='title'>{product.name}</h1>
@@ -29,7 +29,7 @@ class SingleProduct extends Component {
           <span>Quantity: {product.quantityInCart}</span>
           <div className='button-container'>
             <button
-className="btn btn-info" onClick={() => {
+              className="btn btn-info" onClick={() => {
             NotificationManager.success(`You added ${product.name} to your cart`, 'Added Item');
               if (this.props.cart.indexOf(product) > -1){
                 this.props.onIncrease(product)
@@ -40,7 +40,9 @@ className="btn btn-info" onClick={() => {
             <button onClick={() => {
               NotificationManager.success(`You added one ${product.name} to your cart`, 'Added Item');
               this.props.onIncrease(product);
-            }}>
+            }}
+            disabled={product.quantityInCart < 1}
+            >
               &#x21e7;
             </button>
             <button
@@ -51,7 +53,7 @@ className="btn btn-info" onClick={() => {
                 );
                 this.props.onDecrease(product);
               }}
-              disabled={product.quantityInCart === 1}
+              disabled={product.quantityInCart <= 1}
             >
               &#x21e9;
             </button>
@@ -69,6 +71,7 @@ className="btn btn-info" onClick={() => {
             })}
           </div>
         </div>
+        <NotificationContainer />
       </div>
     );
   }
