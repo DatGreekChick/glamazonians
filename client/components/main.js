@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import { logout } from '../store';
 var FontAwesome = require('react-fontawesome');
-import Cart from './Cart';
 
 /**
  * COMPONENT
@@ -32,7 +31,8 @@ const Main = ({ children, handleClick, isLoggedIn, cart }) => {
               <Link to="/signup">Sign Up</Link>
               <Link to="/products">Products</Link>
             <div className="cart-nav">
-              <Link to="/cart"><FontAwesome name="shopping-cart" size='2x'
+              <Link to="/cart"><FontAwesome
+name="shopping-cart" size="2x"
               style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }} /></Link>
             </div>
           </div>
