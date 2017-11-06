@@ -58,14 +58,20 @@ async function seed() {
   const lineItems = await Promise.all([
     LineItem.create({
       purchasePrice: 21.0,
-      purchaseNum: 2
+      purchaseNum: 2,
+      orderId: 1,
+      productId: 1
     }),
     LineItem.create({
-      purchasePrice: 15.0
+      purchasePrice: 15.0,
+      orderId: 2,
+      productId: 2
     }),
     LineItem.create({
       purchasePrice: 68.85,
-      purchaseNum: 3
+      purchaseNum: 3,
+      orderId: 3,
+      productId: 3
     })
   ]);
 
@@ -129,13 +135,19 @@ async function seed() {
 
   const orders = await Promise.all([
     Order.create({
-      status: 'Created'
+      status: 'Created',
+      userId: 1,
+      addressId: 1
     }),
     Order.create({
-      status: 'Processing'
+      status: 'Processing',
+      userId: 2,
+      addressId: 2
     }),
     Order.create({
-      status: 'Completed'
+      status: 'Completed',
+      userId: 3,
+      addressId: 3
     })
   ]);
 
