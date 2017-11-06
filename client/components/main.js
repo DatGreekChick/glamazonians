@@ -39,15 +39,6 @@ const Main = ({ children, handleClick, isLoggedIn }) => {
         <Link to="/about">
           <span>About Us</span>
         </Link>
-        <Link to="/contact-us">
-          <span>Contact Us</span>
-        </Link>
-        <Link to="/careers">
-          <span>Careers</span>
-        </Link>
-        <Link to="/faqs">
-          <span>FAQs</span>
-        </Link>
       </footer>
     </div>
   );

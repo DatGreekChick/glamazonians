@@ -2,6 +2,7 @@ node_modules
 public/bundle.js
 public/assets/bundle.js
 public/bundle.js.map
+public/assets/bundle.js
 secrets.js
 .DS_Store
 npm-debug.log

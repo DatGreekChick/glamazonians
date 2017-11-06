@@ -5,45 +5,38 @@ import { withRouter } from 'react-router';
 import { addItem, increaseItem } from '../store';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 
-export class AllProducts extends Component {
 
-  componentDidMount(){
-    console.log('Products props: ', this.props);
+const AllProducts = (props) => {
+  const clickHandle = (product) => {
+    NotificationManager.success(`You added ${product.name} to your cart`, 'Added Item');
+    if (props.cart.indexOf(product) > -1){
+      props.onIncrease(product)
+    } else {
+      props.onAdd(product);
+    }
   }
-
-  render() {
-
-
 return (
-      <div>
-      <NotificationContainer />
-        <h1>Products</h1>
-        <div>
-          { this.props.products &&
-            this.props.products.map(product => (
-              <div key={product.id}>
-                <Link to={`/products/${product.id}`}>
-                  <img src={product.image} />
-                  <div>{product.name}</div>
-                  <div>{product.priceInDollars}</div>
-                </Link>
-                <button
-className="btn btn-info" onClick={() => {
-                NotificationManager.success(`You added ${product.name} to your cart`, 'Added Item');
-                  if (this.props.cart.indexOf(product) > -1){
-                    this.props.onIncrease(product)
-                  } else {
-                    this.props.onAdd(product);
-                  }
-                  }}>ADD</button>
-                </div>
-              )
-            )
-          }
-        </div>
-      </div>
-    );
-  }
+  <div>
+  <NotificationContainer />
+    <h1>Products</h1>
+    <div className="allProducts">
+      { props.products &&
+        props.products.map(product => (
+          <div key={product.id} className="oneProduct">
+            <Link to={`/products/${product.id}`}>
+              <img src={product.image} />
+              <div><h2>{product.name}</h2></div>
+              <div><h1>${product.priceInDollars} </h1></div>
+            </Link>
+            <button className="addButton"
+              onClick={() => clickHandle(product)} >Add to Cart</button>
+            </div>
+          )
+        )
+      }
+    </div>
+  </div>
+  );
 }
 
 const mapState = (state) => {
