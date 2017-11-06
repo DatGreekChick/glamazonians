@@ -5,12 +5,14 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import user from './user'
 import cart from './cart';
 import products from './products';
+import product from './product';
 import reviews from './reviews';
 
 const reducer = combineReducers({
   user,
   cart,
   products,
+  product,
   reviews,
 });
 
@@ -27,6 +29,7 @@ store.subscribe(() => localStorage.setItem('store', JSON.stringify(store.getStat
 export * from './user'
 export * from './cart';
 export * from './products';
+export * from './product';
 export * from './reviews';
 
 export default store;
