@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import { logout } from '../store';
+var FontAwesome = require('react-fontawesome');
+import Cart from './Cart';
 
 /**
  * COMPONENT
@@ -10,7 +12,7 @@ import { logout } from '../store';
  *  else common to our entire app. The 'picture' inside the frame is the space
  *  rendered out by the component's `children`.
  */
-const Main = ({ children, handleClick, isLoggedIn }) => {
+const Main = ({ children, handleClick, isLoggedIn, cart }) => {
   return (
     <div>
       <h1>Glamazonians</h1>
@@ -25,9 +27,14 @@ const Main = ({ children, handleClick, isLoggedIn }) => {
           </div>
         ) : (
           <div>
-            {/* The navbar will show these links before you log in */}
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Sign Up</Link>
+              {/* The navbar will show these links before you log in */}
+              <Link to="/login">Login</Link>
+              <Link to="/signup">Sign Up</Link>
+              <Link to="/products">Products</Link>
+            <div className="cart-nav">
+              <Link to="/cart"><FontAwesome name="shopping-cart" size='2x'
+              style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }} /></Link>
+            </div>
           </div>
         )}
       </nav>
@@ -49,7 +56,8 @@ const Main = ({ children, handleClick, isLoggedIn }) => {
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    cart: state.cart
   };
 };
 

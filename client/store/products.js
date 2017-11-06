@@ -21,7 +21,6 @@ export const fetchAllProducts = () =>
   dispatch =>
     axios.get('/api/products')
       .then(res => {
-        console.log('bananaas');
         dispatch(fetch(res.data))})
       .catch(err => console.log(err))
 
