@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Product, Order} = require('../db/models')
+const {Product, Order, Review} = require('../db/models')
 module.exports = router
 
 
@@ -12,7 +12,7 @@ router.get('/', (req, res, next) => {
 
 // GET /api/products/:productId
 router.get('/:productId', (req, res, next) => {
-  Product.findById(req.params.productId)
+  Product.findById(req.params.productId, {include: {model: Review}})
   .then(product => res.json(product))
   .catch(next);
 });
