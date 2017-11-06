@@ -7,6 +7,7 @@ body {
 
   a {
     text-decoration: none;
+    color: #333;
   }
 
   label {
@@ -22,6 +23,15 @@ body {
     margin: 1em;
     display: inline-block;
   }
+
+  .cart-nav {
+    display: flex;
+    flex-direction: row;
+    float: right;
+  }
+
 }
 
+
 @import '_cart';
+@import '_products';

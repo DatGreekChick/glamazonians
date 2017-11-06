@@ -19,17 +19,17 @@ return (
   <div>
   <NotificationContainer />
     <h1>Products</h1>
-    <div>
+    <div className="allProducts">
       { props.products &&
         props.products.map(product => (
-          <div key={product.id}>
+          <div key={product.id} className="oneProduct">
             <Link to={`/products/${product.id}`}>
               <img src={product.image} />
-              <div>{product.name}</div>
-              <div>{product.priceInDollars}</div>
+              <div><h2>{product.name}</h2></div>
+              <div><h1>${product.priceInDollars} </h1></div>
             </Link>
-            <button
-              onClick={() => clickHandle(product)} >ADD</button>
+            <button className="addButton"
+              onClick={() => clickHandle(product)} >Add to Cart</button>
             </div>
           )
         )
