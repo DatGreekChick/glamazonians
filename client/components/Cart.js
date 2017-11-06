@@ -1,138 +1,42 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { deleteItem, increaseItem, decreaseItem } from '../store';
-import {
-  NotificationContainer,
-  NotificationManager
-} from 'react-notifications';
+import { NotificationContainer } from 'react-notifications';
+import CartItem from './CartItem';
+import CartTotals from './CartTotals';
 
-export class Cart extends Component {
-  constructor() {
-    super();
-  }
-
-  getCartTotal() {
-    var individualPrices = this.props.cart.map(
-      el => el.quantityInCart * el.price / 100
-    );
-    var total = individualPrices.reduce((sum, value) => sum + value);
-    return Number(total.toFixed(2));
-  }
-
-  componentWillUpdate() {
-    this.getCartTotal();
-  }
-
-  render() {
-    let cart;
-    if (this.props.cart.length) {
-      cart = (
-        <div className="shopping-cart">
-          <div className="column-labels">
-            <label className="product-image">Image</label>
-            <label className="product-details">Product</label>
-            <label className="product-price">Price</label>
-            <label className="product-quantity">Quantity</label>
-            <label className="product-removal">Remove</label>
-            <label className="product-line-price">Total</label>
-          </div>
-          {this.props.cart.map(item => (
-            <div key={item.id} className="product">
-              <div className="product-image">
-                <img src={item.image} />
-              </div>
-              <div className="product-details">
-                <div className="product-title">{item.name}</div>
-                <p className="product-description">{item.description}</p>
-              </div>
-              <div className="product-price"> {item.priceInDollars}</div>
-              <div className="product-quantity">
-                <button
-                  onClick={() => {
-                    NotificationManager.success(
-                      `You added one ${item.name} to your cart`,
-                      'Added Item'
-                    );
-                    this.props.onIncrease(item);
-                  }}
-                >
-                  +
-                </button>
-                <span>  {item.quantityInCart}  </span>
-                <button
-                  onClick={() => {
-                    NotificationManager.warning(
-                      `You removed one ${item.name} from your cart`,
-                      'Removed Item'
-                    );
-                    this.props.onDecrease(item);
-                  }}
-                  disabled={item.quantityInCart === 1}
-                >
-                  -
-                </button>
-              </div>
-              <div className="product-removal">
-                <button
-                  className="remove-product"
-                  onClick={() => {
-                    NotificationManager.error(
-                      `You removed ${item.name} from your cart`,
-                      'Removed Item'
-                    );
-                    this.props.onDelete(item.id);
-                  }}
-                >
-                  X
-                </button>
-              </div>
-              <div className="product-line-price">
-                {(item.priceInDollars * item.quantityInCart).toFixed(2)}
-              </div>
-            </div>
-          ))}
-          <div id="totals">
-            <div className="totals-item">
-              <label>Subtotal</label>
-              <div className="totals-value" id="cart-subtotal">
-              {this.getCartTotal()}
-              </div>
-            </div>
-            <div className="totals-item">
-              <label>Tax (5%)</label>
-              <div className="totals-value" id="cart-tax">
-                {(this.getCartTotal() * 0.0635).toFixed(2)}
-              </div>
-            </div>
-            <div className="totals-item">
-              <label>Shipping</label>
-              <div className="totals-value" id="cart-shipping">{(this.getCartTotal() * 0.08).toFixed(2)}</div>
-            </div>
-            <div className="totals-item totals-item-total">
-              <label>Total:</label>
-              <div className="total-value" id="cart-total"> &#x24;
-              {(this.getCartTotal() * 1.1435).toFixed(2)}
-              </div>
-            </div>
-          </div>
-          <button className="checkout">Checkout</button>
-        </div>
-      );
-    } else {
-      cart = (
+export const Cart = () => {
+    // Check for empty cart and rendering the cart items, totals, and checkout button if item is in cart
+  return (
+<div>{
+    this.props.cart.length ? (
+      <div id="cart" className="container">
+          <table className="shopping-cart" style={{ width: '100%' }}>
+            <tbody>
+              <tr className="column-labels">
+                <th className="product-image">Image</th>
+                <th className="product-details">Product</th>
+                <th className="product-price">Price</th>
+                <th className="product-quantity">Quantity</th>
+                <th className="product-removal">Remove</th>
+                <th className="product-line-price">Total</th>
+              </tr>
+              {this.props.cart.map((item, i) => <CartItem item={item} key={i} cart={this.props.cart} />)}
+            </tbody>
+          </table>
+        <CartTotals cart={this.props.cart} />
+        <button className="checkout">Checkout</button>
+        <NotificationContainer />
+  </div>
+      )
+      //OR: if no items in cart, render empty cart message
+    : (
         <div id="empty">
           <h1>Your cart is empty</h1>
         </div>
-      );
-    }
-    return (
-      <div id="cart" className="container">
-        {cart}
-        <NotificationContainer />
-      </div>
-    );
-  }
+      )
+    }</div>
+  )
 }
 
 const mapState = state => {
@@ -141,16 +45,4 @@ const mapState = state => {
   };
 };
 
-const mapDispatch = dispatch => ({
-  onDelete(product) {
-    dispatch(deleteItem(product));
-  },
-  onIncrease(product) {
-    dispatch(increaseItem(product));
-  },
-  onDecrease(product) {
-    dispatch(decreaseItem(product));
-  }
-});
-
-export default withRouter(connect(mapState, mapDispatch)(Cart));
+export default withRouter(connect(mapState)(Cart));
