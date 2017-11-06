@@ -11,20 +11,10 @@ import {
   UserHome,
   AllProducts,
   SingleProduct,
-  Orders,
   About,
-  ContactUs,
-  Careers,
-  FAQs,
   MyAccount,
   Cart,
-  SingleReview,
-  ThankYou,
-  AddReviewForm,
-  SingleOrder,
   AddProductForm,
-  SingleUser,
-  Users
 } from './components';
 
 import { me, fetchAllProducts } from './store';
@@ -44,39 +34,23 @@ class Routes extends Component {
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             <Route path="/about" component={About} />
-            <Route path="/contact-us" component={ContactUs} />
-            <Route path="/careers" component={Careers} />
-            <Route path="/faqs" component={FAQs} />
             <Route path="/cart" component={Cart} />
-            <Route path="/thank-you" component={ThankYou} />
             <Route
               exact
               path="/products/:productId"
               component={SingleProduct}
-            />
-            <Route
-              exact path="/products/:productId/currentReview"
-              component={SingleReview}
-            />
-            <Route
-              exact path="/products/:productId/addReview"
-              component={AddReviewForm}
             />
             <Route exact path="/products" component={AllProducts} />
             {isLoggedIn && (
               <Switch>
                 <Route exact path="/home" component={UserHome} />
                 <Route exact path="/myAccount" component={MyAccount} />
-                <Route exact path="/orders" component={Orders} />
-                <Route path="/orders/:orderId" component={SingleOrder} />
               </Switch>
             )}
             {isAdmin && (
               <Switch>
                 <Route exact path="/users" component={Users} />
                 <Route path="/users/:userId" component={SingleUser} />
-                <Route exact path="/orders" component={Orders} />
-                <Route path="/orders/:orderId" component={SingleOrder} />
                 <Route exact path="/addProduct" component={AddProductForm} />
               </Switch>
             )}
