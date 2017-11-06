@@ -20,14 +20,13 @@ if (!process.env.FACEBOOK_APP_ID || !process.env.FACEBOOK_APP_SECRET) {
     (token, refreshToken, profile, done) => {
       const facebookId = profile.id;
       const name = profile.displayName;
-      const email = profile.emails[0].value;
 
       User.find({ where: { facebookId } })
         .then(
           foundUser =>
             (foundUser
               ? done(null, foundUser)
-              : User.create({ name, email, facebookId }).then(createdUser =>
+              : User.create({ name, facebookId }).then(createdUser =>
                   done(null, createdUser)
                 ))
         )
@@ -40,7 +39,7 @@ if (!process.env.FACEBOOK_APP_ID || !process.env.FACEBOOK_APP_SECRET) {
   router.get('/', passport.authenticate('facebook', { scope: 'email' }));
 
   router.get(
-    '/callback',
+    '/verify',
     passport.authenticate('facebook', {
       successRedirect: '/home',
       failureRedirect: '/login'
