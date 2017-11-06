@@ -19,6 +19,7 @@ User.hasMany(Review, {
   as: 'reviews'
 });
 
+// stretch goal:
 User.hasMany(Address, {
   foreignKey: 'userId',
   sourceKey: 'id',
@@ -88,8 +89,8 @@ Review.belongsTo(User, {
 
 
 Address.belongsTo(User, {
-  foreignKey: 'userName',
-  targetKey: 'name',
+  foreignKey: 'userId',
+  targetKey: 'id',
   constraints: false,
   as: 'user'
 });

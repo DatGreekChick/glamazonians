@@ -77,21 +77,24 @@ async function seed() {
       line2: '',
       city: 'New York',
       state: 'NY',
-      zip: '10003'
+      zip: '10003',
+      userId: 1
     }),
     Address.create({
       line1: '123 Montvale Road',
       line2: '',
       city: 'Montvale',
       state: 'NJ',
-      zip: '07645'
+      zip: '07645',
+      userId: 2
     }),
     Address.create({
       line1: '123 Houston Street',
       line2: '',
       city: 'New York',
       state: 'NY',
-      zip: '10003'
+      zip: '10003',
+      userId: 3
     })
   ]);
 
