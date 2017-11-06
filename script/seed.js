@@ -113,21 +113,24 @@ async function seed() {
       price: 25.5,
       quantityAvailable: 10,
       description: 'Totally not Katniss from The Hunger Games',
-      tags: ['katniss', 'tribute', 'archer', 'jacket']
+      tags: ['katniss', 'tribute', 'archer', 'jacket'],
+      orderId: 1
     }),
     Product.create({
       name: 'Courageous Forest Princess',
       price: 25.99,
       quantityAvailable: 25,
       description: 'Totally not Merida from Brave',
-      tags: ['merida', 'brave', 'forest', 'princess', 'courageous']
+      tags: ['merida', 'brave', 'forest', 'princess', 'courageous'],
+      orderId: 2
     }),
     Product.create({
       name: 'K Billy Skin Suit',
       price: 35.5,
       quantityAvailable: 30,
       description: 'Totally not Uma Thurman in Kill Bill.',
-      tags: ['uma', 'kill', 'bill', 'yellow']
+      tags: ['uma', 'kill', 'bill', 'yellow'],
+      orderId: 3
     })
   ]);
 

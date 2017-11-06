@@ -49,6 +49,13 @@ Order.belongsTo(Address, {
   as: 'address'
 });
 
+Order.hasMany(Product, {
+  foreignKey: 'orderId',
+  sourceKey: 'id',
+  constraints: false,
+  as: 'products'
+});
+
 
 LineItem.belongsTo(Order, {
   foreignKey: 'orderId',
@@ -70,6 +77,13 @@ Product.hasMany(Review, {
   sourceKey: 'id',
   constraints: false,
   as: 'reviews'
+});
+
+Product.belongsTo(Order, {
+  foreignKey: 'orderId',
+  targetKey: 'id',
+  constraints: false,
+  as: 'order'
 });
 
 
