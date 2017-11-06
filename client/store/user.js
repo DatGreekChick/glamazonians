@@ -24,7 +24,7 @@ export const auth = (email, password, method) => dispatch =>
     .post(`/auth/${method}`, { email, password })
     .then(res => {
       dispatch(getUser(res.data));
-      history.push('/home');
+      history.push('/products');
     })
     .catch(error => dispatch(getUser({ error })));
 
