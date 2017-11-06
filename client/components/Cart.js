@@ -5,11 +5,11 @@ import { NotificationContainer } from 'react-notifications';
 import CartItem from './CartItem';
 import CartTotals from './CartTotals';
 
-export const Cart = () => {
+export const Cart = (props) => {
     // Check for empty cart and rendering the cart items, totals, and checkout button if item is in cart
   return (
 <div>{
-    this.props.cart.length ? (
+    props.cart.length ? (
       <div id="cart" className="container">
           <table className="shopping-cart" style={{ width: '100%' }}>
             <tbody>
@@ -21,10 +21,10 @@ export const Cart = () => {
                 <th className="product-removal">Remove</th>
                 <th className="product-line-price">Total</th>
               </tr>
-              {this.props.cart.map((item, i) => <CartItem item={item} key={i} cart={this.props.cart} />)}
+              {props.cart.map((item, i) => <CartItem item={item} key={i} cart={props.cart} />)}
             </tbody>
           </table>
-        <CartTotals cart={this.props.cart} />
+        <CartTotals cart={props.cart} />
         <button className="checkout">Checkout</button>
         <NotificationContainer />
   </div>
