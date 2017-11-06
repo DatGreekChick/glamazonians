@@ -1,0 +1,31 @@
+.allProducts {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.oneProduct {
+  padding: 40px;
+  text-align: center;
+
+  img {
+    height: 300px;
+    border-radius: .5em;
+  }
+
+.addButton {
+  border: 0;
+  margin-top: 20px;
+  padding: 6px 25px;
+  background-color: #6b6;
+  color: #fff;
+  font-size: 25px;
+  border-radius: 3px;
+}
+
+.addButton:hover {
+  background-color: #494;
+}
+
+}

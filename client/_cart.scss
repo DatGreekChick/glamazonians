@@ -14,6 +14,10 @@ $font-bold: 'HelveticaNeue-Medium', 'Helvetica Neue Medium';
 .product-line-price { float: left; width: 12%; text-align: right; }
 
 
+td {
+  text-align: center;
+}
+
 /* This is used as the traditional .clearfix class */
 .group:before,
 .group:after {
