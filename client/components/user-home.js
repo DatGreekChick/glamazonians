@@ -5,11 +5,12 @@ import { connect } from 'react-redux';
 /**
  * COMPONENT
  */
-export const UserHome = ({ email, name }) => {
+export const UserHome = ({ name, email }) => {
   return (
     <div>
-      <h3>Welcome, {email ? email : name}</h3>
+      <h3>Welcome, {name ? name : email}</h3>
     </div>
+    // Add user account info onto this page. This is where they will edit their info
   );
 };
 
@@ -17,6 +18,7 @@ export const UserHome = ({ email, name }) => {
  * CONTAINER
  */
 const mapState = state => ({
+  name: state.user.name,
   email: state.user.email
 });
 
@@ -26,5 +28,6 @@ export default connect(mapState)(UserHome);
  * PROP TYPES
  */
 UserHome.propTypes = {
+  name: PropTypes.string,
   email: PropTypes.string
 };
