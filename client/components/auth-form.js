@@ -1,7 +1,8 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
-import { auth } from '../store'
+import React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+import PropTypes from 'prop-types';
+import { auth } from '../store';
 
 /**
  * COMPONENT
@@ -11,11 +12,15 @@ const AuthForm = ({ name, displayName, handleSubmit, error }) => {
     <div>
       <form onSubmit={handleSubmit} name={name}>
         <div>
-          <label htmlFor="email"><small>Email</small></label>
+          <label htmlFor="email">
+            <small>Email</small>
+          </label>
           <input name="email" type="text" />
         </div>
         <div>
-          <label htmlFor="password"><small>Password</small></label>
+          <label htmlFor="password">
+            <small>Password</small>
+          </label>
           <input name="password" type="password" />
         </div>
         <div>
@@ -24,8 +29,9 @@ const AuthForm = ({ name, displayName, handleSubmit, error }) => {
         {error && error.response && <div> {error.response.data} </div>}
       </form>
       <a href="/auth/google">{displayName} with Google</a>
+      <a href="/auth/facebook">{displayName} with Facebook</a>
     </div>
-  )
+  );
 };
 
 /**
@@ -49,18 +55,18 @@ const mapSignup = state => ({
 
 const mapDispatch = dispatch => {
   return {
-    handleSubmit (evt) {
+    handleSubmit(evt) {
       evt.preventDefault();
       const formName = evt.target.name;
       const email = evt.target.email.value;
       const password = evt.target.password.value;
       dispatch(auth(email, password, formName));
     }
-  }
+  };
 };
 
-export const Login = connect(mapLogin, mapDispatch)(AuthForm);
-export const Signup = connect(mapSignup, mapDispatch)(AuthForm);
+export const Login = withRouter(connect(mapLogin, mapDispatch)(AuthForm));
+export const Signup = withRouter(connect(mapSignup, mapDispatch)(AuthForm));
 
 /**
  * PROP TYPES
