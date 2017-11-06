@@ -1,10 +1,10 @@
-import './index.scss'
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { AppContainer } from 'react-hot-loader'
-import { Provider } from 'react-redux'
-import store from './store'
-import Routes from './routes'
+import './index.scss';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { AppContainer } from 'react-hot-loader';
+import { Provider } from 'react-redux';
+import store from './store';
+import Routes from './routes';
 
 function render(Routes) {
   ReactDOM.render(
@@ -18,7 +18,9 @@ function render(Routes) {
 }
 
 if (module.hot) {
-  module.hot.accept('./routes', () => { render(Routes) })
+  module.hot.accept('./routes', () => {
+    render(Routes);
+  });
 }
 
 render(Routes);
