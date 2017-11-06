@@ -9,6 +9,5 @@ export { Login, Signup } from './auth-form';
 export { default as AllProducts } from './AllProducts';
 export { default as SingleProduct } from './SingleProduct';
 export { default as About } from './About';
-export { default as MyAccount } from './MyAccount';
 export { default as Cart } from './Cart';
 export { default as AddProductForm } from './AddProductForm';
