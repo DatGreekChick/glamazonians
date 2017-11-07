@@ -122,7 +122,7 @@ class Reviews extends Component {
           </div>
         )}
         <hr />
-        {product.reviews.length &&
+        {product.reviews &&
           product.reviews.map(review => {
             return (
               <div key={review.id}>
