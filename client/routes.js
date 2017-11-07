@@ -13,7 +13,8 @@ import {
   SingleProduct,
   About,
   Cart,
-  AddProductForm
+  AddProductForm,
+  Checkout
 } from './components';
 
 import { me, fetchAllProducts } from './store';
@@ -40,6 +41,7 @@ class Routes extends Component {
               component={SingleProduct}
             />
             <Route exact path="/products" component={AllProducts} />
+            <Route exact path="/checkout" component={Checkout} />>
             {isLoggedIn && (
               <Switch>
                 <Route exact path="/products" component={AllProducts} />
@@ -67,7 +69,7 @@ const mapState = state => ({
   // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
   // Otherwise, state.user will be an empty object, and state.user.id will be falsey
   isAdmin: !!state.user.isAdmin,
-  isLoggedIn: !!state.user.id,
+  isLoggedIn: !!state.user.id
 });
 
 const mapDispatch = dispatch => ({
