@@ -22,6 +22,7 @@ router.get('/:orderId', (req, res, next) => {
 
 // POST /spi/orders/create
 router.post('/create', (req, res, next) => {
+  console.log(req.session)
   Order.create(req.body)
     .then(order => res.status(201).json(order))
     .catch(next);
