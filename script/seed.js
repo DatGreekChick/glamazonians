@@ -16,18 +16,54 @@ async function seed() {
     User.create({
       name: 'cody',
       email: 'cody@email.com',
-      password: '123456789'
+      password: 'bones'
     }),
     User.create({
       name: 'murphy',
       email: 'murphy@email.com',
-      password: '123456789'
+      password: 'iammurphy'
     }),
     User.create({
       name: 'eleni',
       email: 'eleni@email.com',
-      password: '123456789',
+      password: 'admin',
       isAdmin: true
+    }),
+    User.create({
+      name: 'keri',
+      email: 'keri@email.com',
+      password: 'admin',
+      isAdmin: true
+    }),
+    User.create({
+      name: 'cecilia',
+      email: 'cecilia@email.com',
+      password: 'admin',
+      isAdmin: true
+    }),
+    User.create({
+      name: 'shelby',
+      email: 'shelby@email.com',
+      password: 'admin',
+      isAdmin: true
+    }),
+    User.create({
+      name: 'nicolas',
+      email: 'nic.cage@email.com',
+      password: 'actor',
+      isAdmin: false
+    }),
+    User.create({
+      name: 'wonder',
+      email: 'wonder.woman@email.com',
+      password: 'wonderful',
+      isAdmin: false
+    }),
+    User.create({
+      name: 'blake',
+      email: 'blake@email.com',
+      password: 'ilovegreenlantern',
+      isAdmin: false
     })
   ]);
 
@@ -38,8 +74,7 @@ async function seed() {
       title: 'I loved this!',
       rating: 5,
       description:
-        'This product was so great. Love it. Buy it! Highly recommend!',
-      verifiedPurchase: true,
+        'Nic Cage was so wonderful in this role! So great! I\'m such a fan!',
       productId: 1,
       userId: 1
     }),
@@ -47,9 +82,65 @@ async function seed() {
       title: 'Just ok...',
       rating: 3,
       description:
-        "Eh, it was okay. I probably wouldn't buy it again, but it was fine.",
-      productId: 2,
+        "Eh, it was okay. I probably wouldn't buy it again for Nic Cage, but it was fine.",
+      productId: 1,
       userId: 2
+    }),
+    Review.create({
+      rating: 1,
+      description: 'NEVER AGAIN! HATED THIS!',
+      productId: 2,
+      userId: 3
+    }),
+    Review.create({
+      rating: 4,
+      description: 'This role was super great for Nic Cage. It really added depth to his character portfolio.',
+      productId: 3,
+      userId: 3
+    }),
+    Review.create({
+      title: 'This guy is the worst',
+      rating: 1,
+      description: 'Does this guy even act? Like DOES. 👏 HE. 👏 EVEN!?',
+      productId: 3,
+      userId: 3
+    }),
+    Review.create({
+      title: 'What a stud',
+      rating: 5,
+      description: 'I fan girl at the thought of Nic Cage.',
+      productId: 3,
+      userId: 3
+    }),
+    Review.create({
+      rating: 1,
+      description: 'NEVER AGAIN! HATED THIS!',
+      productId: 3,
+      userId: 3
+    }),
+    Review.create({
+      rating: 1,
+      description: 'NEVER AGAIN! HATED THIS!',
+      productId: 3,
+      userId: 3
+    }),
+    Review.create({
+      rating: 1,
+      description: 'NEVER AGAIN! HATED THIS!',
+      productId: 3,
+      userId: 3
+    }),
+    Review.create({
+      rating: 1,
+      description: 'NEVER AGAIN! HATED THIS!',
+      productId: 3,
+      userId: 3
+    }),
+    Review.create({
+      rating: 1,
+      description: 'NEVER AGAIN! HATED THIS!',
+      productId: 3,
+      userId: 3
     }),
     Review.create({
       rating: 1,
