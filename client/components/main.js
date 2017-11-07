@@ -14,6 +14,7 @@ var FontAwesome = require('react-fontawesome');
 const Main = ({ children, handleClick, isLoggedIn, cart }) => {
   return (
     <div>
+    <div className="header">
       <h1>Glamazonians</h1>
       <nav>
         {isLoggedIn ? (
@@ -44,13 +45,14 @@ name="shopping-cart" size="2x"
           </div>
         )}
       </nav>
+      </div>
       <hr />
       {children}
       <hr />
       <footer>
-        <span>GraceShopper&trade;</span>
+        <span>GraceShopper&trade; </span>
         <Link to="/about">
-          <span>About Us</span>
+          <span> About Us</span>
         </Link>
       </footer>
     </div>
