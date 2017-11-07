@@ -12,7 +12,7 @@ const createOrder = order => ({type: CREATE_ORDER, order})
 
 export const createNewOrder = (orderData) =>
   dispatch => {
-    axios.post(`/api/orders/`, orderData)
+    axios.post(`/api/orders/create`, orderData)
     .then(res => dispatch(createOrder(res.data)))
     .catch(err => console.error(err))
   }

@@ -4,8 +4,10 @@ import { withRouter } from 'react-router';
 import { NotificationContainer } from 'react-notifications';
 import CartItem from './CartItem';
 import CartTotals from './CartTotals';
+import { createNewOrder } from '../store';
 
 export const Cart = (props) => {
+
     // Check for empty cart and rendering the cart items, totals, and checkout button if item is in cart
   return (
 <div>{
@@ -25,7 +27,7 @@ export const Cart = (props) => {
             </tbody>
           </table>
         <CartTotals cart={props.cart} />
-        <button className="checkout">Checkout</button>
+        <button onClick={() => props.checkoutSubmit({status: 'Created', userId: 2})} className="checkout">Checkout</button>
         <NotificationContainer />
   </div>
       )
@@ -41,8 +43,15 @@ export const Cart = (props) => {
 
 const mapState = state => {
   return {
-    cart: state.cart
+    cart: state.cart,
+    user: state.user,
   };
 };
 
-export default withRouter(connect(mapState)(Cart));
+const mapDispatch = dispatch => ({
+  checkoutSubmit(order) {
+    dispatch(createNewOrder(order));
+  }
+});
+
+export default withRouter(connect(mapState, mapDispatch)(Cart));
