@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import OrderHistory from './OrderHistory';
 
 /**
  * COMPONENT
@@ -8,9 +9,12 @@ import { connect } from 'react-redux';
 export const UserHome = ({ name, email }) => {
   return (
     <div>
+    <div>
       <h3>Welcome, {name ? name : email}</h3>
     </div>
-    // Add user account info onto this page. This is where they will edit their info
+
+    <OrderHistory />
+    </div>
   );
 };
 

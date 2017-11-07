@@ -23,6 +23,17 @@ const Main = ({ children, handleClick, isLoggedIn, cart }) => {
             <a href="#" onClick={handleClick}>
               Logout
             </a>
+            <Link to="/products">Products</Link>
+            <div className="cart-nav">
+            <Link to="/home" ><FontAwesome
+            name="user-circle-o" size="2x"
+                          style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }} /></Link>
+
+            <Link to="/cart"><FontAwesome
+name="shopping-cart" size="2x"
+              style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }} /></Link>
+            </div>
+
           </div>
         ) : (
           <div>
