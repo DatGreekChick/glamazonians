@@ -95,8 +95,8 @@ Review.belongsTo(Product, {
 });
 
 Review.belongsTo(User, {
-  foreignKey: 'userName',
-  targetKey: 'name',
+  foreignKey: 'userId',
+  targetKey: 'id',
   constraints: false,
   as: 'user'
 });

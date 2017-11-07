@@ -39,17 +39,23 @@ async function seed() {
       rating: 5,
       description:
         'This product was so great. Love it. Buy it! Highly recommend!',
-      verifiedPurchase: true
+      verifiedPurchase: true,
+      productId: 1,
+      userId: 1
     }),
     Review.create({
       title: 'Just ok...',
       rating: 3,
       description:
-        "Eh, it was okay. I probably wouldn't buy it again, but it was fine."
+        "Eh, it was okay. I probably wouldn't buy it again, but it was fine.",
+      productId: 2,
+      userId: 2
     }),
     Review.create({
       rating: 1,
-      description: 'NEVER AGAIN! HATED THIS!'
+      description: 'NEVER AGAIN! HATED THIS!',
+      productId: 3,
+      userId: 3
     })
   ]);
 
