@@ -4,7 +4,9 @@ module.exports = router;
 
 // GET /api/products
 router.get('/', (req, res, next) => {
-  Product.findAll({})
+  Product.findAll({
+    include: [{ model: Order, as: 'order'}]
+  })
     .then(product => res.json(product))
     .catch(next);
 });

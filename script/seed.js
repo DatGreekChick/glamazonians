@@ -58,14 +58,20 @@ async function seed() {
   const lineItems = await Promise.all([
     LineItem.create({
       purchasePrice: 21.0,
-      purchaseNum: 2
+      purchaseNum: 2,
+      orderId: 1,
+      productId: 1
     }),
     LineItem.create({
-      purchasePrice: 15.0
+      purchasePrice: 15.0,
+      orderId: 2,
+      productId: 2
     }),
     LineItem.create({
       purchasePrice: 68.85,
-      purchaseNum: 3
+      purchaseNum: 3,
+      orderId: 3,
+      productId: 3
     })
   ]);
 
@@ -77,21 +83,24 @@ async function seed() {
       line2: '',
       city: 'New York',
       state: 'NY',
-      zip: '10003'
+      zip: '10003',
+      userId: 1
     }),
     Address.create({
       line1: '123 Montvale Road',
       line2: '',
       city: 'Montvale',
       state: 'NJ',
-      zip: '07645'
+      zip: '07645',
+      userId: 2
     }),
     Address.create({
       line1: '123 Houston Street',
       line2: '',
       city: 'New York',
       state: 'NY',
-      zip: '10003'
+      zip: '10003',
+      userId: 3
     })
   ]);
 
@@ -104,21 +113,24 @@ async function seed() {
       price: 25.5,
       quantityAvailable: 10,
       description: 'Totally not Katniss from The Hunger Games',
-      tags: ['katniss', 'tribute', 'archer', 'jacket']
+      tags: ['katniss', 'tribute', 'archer', 'jacket'],
+      orderId: 1
     }),
     Product.create({
       name: 'Courageous Forest Princess',
       price: 25.99,
       quantityAvailable: 25,
       description: 'Totally not Merida from Brave',
-      tags: ['merida', 'brave', 'forest', 'princess', 'courageous']
+      tags: ['merida', 'brave', 'forest', 'princess', 'courageous'],
+      orderId: 2
     }),
     Product.create({
       name: 'K Billy Skin Suit',
       price: 35.5,
       quantityAvailable: 30,
       description: 'Totally not Uma Thurman in Kill Bill.',
-      tags: ['uma', 'kill', 'bill', 'yellow']
+      tags: ['uma', 'kill', 'bill', 'yellow'],
+      orderId: 3
     })
   ]);
 
@@ -126,13 +138,19 @@ async function seed() {
 
   const orders = await Promise.all([
     Order.create({
-      status: 'Created'
+      status: 'Created',
+      userId: 1,
+      addressId: 1
     }),
     Order.create({
-      status: 'Processing'
+      status: 'Processing',
+      userId: 2,
+      addressId: 2
     }),
     Order.create({
-      status: 'Completed'
+      status: 'Completed',
+      userId: 3,
+      addressId: 3
     })
   ]);
 
