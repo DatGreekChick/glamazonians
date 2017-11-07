@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import PropTypes from 'prop-types';
 import {
+  postReview,
   fetchSingleProduct,
   addItem,
   increaseItem,
-  decreaseItem
+  decreaseItem,
+  getNewProductReview
 } from '../store';
 import {
   NotificationContainer,
@@ -14,6 +16,19 @@ import {
 } from 'react-notifications';
 
 class SingleProduct extends Component {
+  constructor() {
+    super();
+    this.state = {
+      opened: false,
+      title: '',
+      description: '',
+      rating: 0,
+    };
+    this.toggleReviewForm = this.toggleReviewForm.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
   componentWillMount() {
     const productId = this.props.match.params.productId;
     this.props.fetchSelectedProduct(productId);
@@ -47,9 +62,43 @@ class SingleProduct extends Component {
     this.props.onIncrease(product);
   }
 
+  toggleReviewForm() {
+    const { opened } = this.state;
+    this.setState({
+      opened: !opened
+    });
+  }
+
+  handleSubmit(event){
+    event.preventDefault();
+    const review = {
+      title: this.state.title,
+      rating: +this.state.rating,
+      description: this.state.description,
+      userId: this.props.user.id,
+      productId: this.props.product.id
+    };
+    this.props.onReview(review);
+    this.setState({
+      title: '',
+      description: '',
+      rating: '',
+      opened: false
+    })
+
+  }
+
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+
+  }
+
   render() {
-    const product = this.props.product;
-    console.log(this.props.cart);
+    const { product } = this.props;
+    const { opened } = this.state;
+    console.log(this.state);
     return (
       <div className="products oneProduct">
         <h1 className="title">{product.name}</h1>
@@ -89,13 +138,85 @@ class SingleProduct extends Component {
           </div>
           <div className="review-container">
             <h2>Reviews</h2>
+            {this.props.isLoggedIn && (
+              <div className="left">
+                <button
+                  onClick={this.toggleReviewForm}
+                  className="reviewButton"
+                >
+                  Write a Review
+                </button>
+                {opened && (
+                  <div>
+                    <hr />
+                    <form onSubmit={this.handleSubmit}>
+                      <label>Rating</label>
+                      <span className="rating">
+                        <input
+                          id="rating5"
+                          type="radio"
+                          name="rating"
+                          value="5"
+                          onChange={this.handleChange}
+                        />
+                        <label htmlFor="rating5">5</label>
+                        <input
+                          id="rating4"
+                          type="radio"
+                          name="rating"
+                          value="4"
+                          onChange={this.handleChange}
+                        />
+                        <label htmlFor="rating4">4</label>
+                        <input
+                          id="rating3"
+                          type="radio"
+                          name="rating"
+                          value="3"
+                          onChange={this.handleChange}
+                        />
+                        <label htmlFor="rating3">3</label>
+                        <input
+                          id="rating2"
+                          type="radio"
+                          name="rating"
+                          value="2"
+                          onChange={this.handleChange}
+                        />
+                        <label htmlFor="rating2">2</label>
+                        <input
+                          id="rating1"
+                          type="radio"
+                          name="rating"
+                          value="1"
+                          onChange={this.handleChange}
+                        />
+                        <label htmlFor="rating1">1</label>
+                      </span>
+                      <label>Title</label>
+                      <input
+                        type="text"
+                        name="title"
+                        onChange={this.handleChange}
+                      />
+                      <label>Review</label>
+                      <textarea name="description" onChange={this.handleChange} />
+                      <input type="submit" />
+                    </form>
+                  </div>
+                )}
+              </div>
+            )}
             <hr />
             {product.reviews.length &&
               product.reviews.map(review => {
                 return (
                   <div key={review.id}>
                     <h3>{review.title}</h3>
-                    <h4>user: {review.userId}</h4>
+                    <h4>
+                      By:{' '}
+                      {review.user ? review.user.name : this.props.user.name }
+                    </h4>
                     <span>Rating: {reviewStars(review.rating)}</span>
                     <p>{review.description}</p>
                   </div>
@@ -122,8 +243,9 @@ const mapStateToProps = state => {
   return {
     products: state.products,
     cart: state.cart,
+    product: state.product,
     user: state.user,
-    product: state.product
+    isLoggedIn: !!state.user.id
   };
 };
 
@@ -139,9 +261,20 @@ const mapDispatchToProps = dispatch => ({
   },
   onDecrease: product => {
     dispatch(decreaseItem(product));
-  }
+  },
+  onReview: review => {
+    dispatch(postReview(review)).then(newReview =>
+      {
+        console.log(newReview);
+        dispatch(getNewProductReview(newReview));
+      }
+    )}
 });
 
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(SingleProduct)
 );
+
+SingleProduct.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired
+};
