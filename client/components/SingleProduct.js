@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import Reviews from './Reviews';
+import { connect } from 'react-redux';
 import {
   fetchSingleProduct,
   addItem,
   increaseItem,
-  decreaseItem
+  decreaseItem,
 } from '../store';
 import {
   NotificationContainer,
@@ -14,6 +14,8 @@ import {
 } from 'react-notifications';
 
 class SingleProduct extends Component {
+
+
   componentWillMount() {
     const productId = this.props.match.params.productId;
     this.props.fetchSelectedProduct(productId);
@@ -47,14 +49,13 @@ class SingleProduct extends Component {
     this.props.onIncrease(product);
   }
 
+
   render() {
-    const product = this.props.product;
-    console.log(this.props.cart);
+    const { product } = this.props;
     return (
       <div className="products oneProduct">
         <h1 className="title">{product.name}</h1>
         <img src={product.image} />
-
         <div className="product-info">
           <h2> &#36; {product.priceInDollars} </h2>
           <h4>{product.description}</h4>
@@ -87,21 +88,7 @@ class SingleProduct extends Component {
               Add To Cart
             </button>
           </div>
-          <div className="review-container">
-            <h2>Reviews</h2>
-            <hr />
-            {product.reviews.length &&
-              product.reviews.map(review => {
-                return (
-                  <div key={review.id}>
-                    <h3>{review.title}</h3>
-                    <h4>user: {review.userId}</h4>
-                    <span>Rating: {reviewStars(review.rating)}</span>
-                    <p>{review.description}</p>
-                  </div>
-                );
-              })}
-          </div>
+          <Reviews />
         </div>
         <NotificationContainer />
       </div>
@@ -109,21 +96,12 @@ class SingleProduct extends Component {
   }
 }
 
-function reviewStars(rating) {
-  let starRating = ['☆', '☆', '☆', '☆', '☆'];
-  for (let i = 0; i < rating; i++) {
-    starRating.pop();
-    starRating.unshift('★');
-  }
-  return starRating.join(' ');
-}
 
 const mapStateToProps = state => {
   return {
-    products: state.products,
     cart: state.cart,
+    product: state.product,
     user: state.user,
-    product: state.product
   };
 };
 

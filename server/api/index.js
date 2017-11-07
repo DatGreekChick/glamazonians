@@ -4,6 +4,7 @@ module.exports = router;
 router.use('/users', require('./users'));
 router.use('/orders', require('./orders'));
 router.use('/products', require('./products'));
+router.use('/reviews', require('./reviews'));
 // TODO: update vv to orders
 // router.use('/admin', require('./admin'));
 
