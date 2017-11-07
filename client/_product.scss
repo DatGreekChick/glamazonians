@@ -11,4 +11,53 @@
   background-color: #494;
 }
 
+.reviewButton {
+    border: 0;
+    margin-top: 20px;
+    padding: 6px 25px;
+    background-color: orange;
+    color: #fff;
+    font-size: 25px;
+    border-radius: 3px;
+    &:hover {
+      background-color: darkorange;
+    }
+}
+
+.left {
+  text-align: left;
+}
+.rating {
+  overflow: hidden;
+  vertical-align: bottom;
+  display: inline-block;
+  width: auto;
+  height: 30px;
+}
+
+.rating > input {
+  opacity: 0;
+  margin-right: -100%;
+}
+
+.rating > label {
+  position: relative;
+  display: block;
+  float: right;
+  background: url('https://maxcdn.icons8.com/Share/icon/Messaging//filled_star1600.png');
+  background-size: 30px 30px;
+}
+
+.rating > label:before {
+  display: block;
+  opacity: 0;
+  content: '';
+  width: 30px;
+  height: 30px;
+  background: url('https://png.icons8.com/christmas-star/color/1600');
+  background-size: 30px 30px;
+  transition: opacity 0.2s linear;
+}
+
+.rating > label:hover:before,  .rating > label:hover ~ label:before,  .rating:not(:hover) > :checked ~ label:before { opacity: 1; }
 }
