@@ -1,41 +1,37 @@
-$font-bold: 'HelveticaNeue-Medium', 'Helvetica Neue Medium';
+$font-bold: "HelveticaNeue-Medium", "Helvetica Neue Medium";
 $color-border: #eee;
 $color-label: #aaa;
-$font-default: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-
-
+$font-default: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+  Helvetica, Arial, sans-serif;
 * {
   box-sizing: border-box;
 }
 
 body {
   font-family: sans-serif;
-
   a {
     text-decoration: none;
     color: #333;
   }
-
   label {
     display: block;
+    font-size: 1.3em;
   }
-
   nav a {
+    padding: 15px;
     display: inline-block;
-    margin: 1em;
+    margin: 0.5em;
   }
-
   form div {
+    padding: 5px;
     margin: 1em;
-    display: inline-block;
+    display: block;
   }
-
   .cart-nav {
     display: flex;
     flex-direction: row;
     float: right;
   }
-
   .addButton {
     border: 0;
     margin-top: 20px;
@@ -47,7 +43,112 @@ body {
   }
 }
 
-@import '_cart';
-@import '_products';
-@import '_product';
-@import '_cartTotals';
+.social {
+  padding: 20px;
+  font-size: 3em;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.socialText {
+  padding-left: 1em;
+  font-size: 1.5em;
+}
+
+.facebook {
+  color: #3b5998;
+}
+
+.google {
+  color: red;
+}
+
+.userForm {
+  text-align: left;
+  margin: 2em auto;
+  width: 400px;
+  padding: 1em;
+  border: 1px solid #ccc;
+  border-radius: 1em;
+  form {
+    label {
+      display: inline-block;
+      width: 90px;
+      text-align: left;
+      padding-bottom: 5px;
+    }
+    input {
+      font: 1em sans-serif;
+      width: 300px;
+      box-sizing: border-box;
+      padding: 10px;
+      border: 1px solid #999;
+      border-radius: 5px;
+    }
+    input:focus {
+      border-color: #000;
+    }
+  }
+}
+
+.header {
+  width: 95vw;
+  h1 {
+    font-weight: bold;
+  }
+  nav {
+    font-size: 1.4em;
+    .cart-nav {
+      float: right;
+      font-size: 2em;
+      border: none;
+    }
+
+    strong {
+      font-size: 30pt;
+    }
+    a {
+      transition: all 0.3s ease;
+    }
+    a:hover {
+      opacity: 0.7;
+    }
+    a.active {
+      border-bottom: solid;
+      border-color: #040128;
+    }
+  }
+}
+
+.loginButton {
+  padding: 10px;
+  margin: 4px;
+  background-color: rgb(35, 35, 133);
+  border: none;
+  color: white;
+  font-size: 1em;
+  font-weight: bold;
+  border-radius: 8px;
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+footer {
+  margin: 0;
+  position: relative;
+  bottom: 0;
+  width: 100vw;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+@import "_cart";
+@import "_products";
+@import "_product";
+@import "_cartTotals";

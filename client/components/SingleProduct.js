@@ -4,9 +4,7 @@ import Reviews from './Reviews';
 import { connect } from 'react-redux';
 import {
   fetchSingleProduct,
-  addItem,
-  increaseItem,
-  decreaseItem,
+  addItem
 } from '../store';
 import {
   NotificationContainer,
@@ -26,29 +24,8 @@ class SingleProduct extends Component {
       `You added ${product.name} to your cart`,
       'Added Item'
     );
-    if (this.props.cart.indexOf(product) > -1) {
-      this.props.onIncrease(product);
-    } else {
-      this.props.onAdd(product);
-    }
+    this.props.onAdd(product);
   }
-
-  decreaseHandler(product) {
-    NotificationManager.warning(
-      `You removed one ${product.name} from your cart`,
-      'Removed Item'
-    );
-    this.props.onDecrease(product);
-  }
-
-  increaseHandler(product) {
-    NotificationManager.success(
-      `You added one ${product.name} to your cart`,
-      'Added Item'
-    );
-    this.props.onIncrease(product);
-  }
-
 
   render() {
     const { product } = this.props;
@@ -59,25 +36,6 @@ class SingleProduct extends Component {
         <div className="product-info">
           <h2> &#36; {product.priceInDollars} </h2>
           <h4>{product.description}</h4>
-          <span>
-            <h3>Quantity: {product.quantityInCart}</h3>
-          </span>
-          <button
-            onClick={() => {
-              this.increaseHandler(product);
-            }}
-            disabled={product.quantityInCart < 1}
-          >
-            &#x21e7;
-          </button>
-          <button
-            onClick={() => {
-              this.decreaseHandler(product);
-            }}
-            disabled={product.quantityInCart <= 1}
-          >
-            &#x21e9;
-          </button>
           <div>
             <button
               className="addButton"
@@ -111,12 +69,6 @@ const mapDispatchToProps = dispatch => ({
   },
   onAdd: product => {
     dispatch(addItem(product));
-  },
-  onIncrease: product => {
-    dispatch(increaseItem(product));
-  },
-  onDecrease: product => {
-    dispatch(decreaseItem(product));
   }
 });
 
