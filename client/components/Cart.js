@@ -27,7 +27,7 @@ export const Cart = (props) => {
             </tbody>
           </table>
         <CartTotals cart={props.cart} />
-        <button onClick={() => props.checkoutSubmit({status: 'Created', userId: 2})} className="checkout">Checkout</button>
+        <button onClick={() => props.checkoutSubmit({status: 'Created', userId: props.user.id|| 0})} className="checkout" >Checkout</button>
         <NotificationContainer />
   </div>
       )
