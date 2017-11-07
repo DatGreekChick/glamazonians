@@ -1,4 +1,5 @@
-import axios from 'axios'
+import axios from 'axios';
+import history from '../history';
 
 // ACTION TYPES
 
@@ -14,6 +15,7 @@ export const createNewOrder = (orderData) =>
   dispatch => {
     axios.post(`/api/orders/create`, orderData)
     .then(res => dispatch(createOrder(res.data)))
+    .then(() => history.push('/home'))
     .catch(err => console.error(err))
   }
 

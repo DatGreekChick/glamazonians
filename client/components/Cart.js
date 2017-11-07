@@ -50,7 +50,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => ({
   checkoutSubmit(order) {
-    dispatch(createNewOrder(order));
+    dispatch(createNewOrder(order))
   }
 });
 
