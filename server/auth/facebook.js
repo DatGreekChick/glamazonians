@@ -21,7 +21,7 @@ if (!process.env.FACEBOOK_APP_ID || !process.env.FACEBOOK_APP_SECRET) {
     (token, refreshToken, profile, done) => {
       const facebookId = profile.id;
       const name = profile.displayName;
-      const email = profile.email;
+      const email = profile.emails[0].value;
 
       User.find({ where: { facebookId } })
         .then(
