@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import { NotificationContainer } from 'react-notifications';
 import CartItem from './CartItem';
 import CartTotals from './CartTotals';
@@ -11,7 +11,7 @@ export const Cart = (props) => {
 <div>{
     props.cart.length ? (
       <div id="cart" className="container">
-          <table className="shopping-cart" style={{ width: '100%' }}>
+          <table className="shopping-cart">
             <tbody>
               <tr className="column-labels">
                 <th className="product-image">Image</th>

@@ -1,3 +1,9 @@
+$font-bold: 'HelveticaNeue-Medium', 'Helvetica Neue Medium';
+$color-border: #eee;
+$color-label: #aaa;
+$font-default: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+
 * {
   box-sizing: border-box;
 }
@@ -41,7 +47,7 @@ body {
   }
 }
 
-
 @import '_cart';
 @import '_products';
 @import '_product';
+@import '_cartTotals';
