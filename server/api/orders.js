@@ -20,6 +20,13 @@ router.get('/:orderId', (req, res, next) => {
     .catch(next);
 });
 
+// POST /spi/orders/create
+router.post('/create', (req, res, next) => {
+  Order.create(req.body)
+    .then(order => res.status(201).json(order))
+    .catch(next);
+});
+
 // PUT /api/orders/:orderId
 router.put('/:orderId', (req, res, next) => {
   Order.findById(req.params.orderId)
