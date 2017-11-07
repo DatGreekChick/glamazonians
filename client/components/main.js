@@ -6,12 +6,6 @@ import { logout } from '../store';
 
 const FontAwesome = require('react-fontawesome');
 
-/**
- * COMPONENT
- *  The Main component is our 'picture frame' - it displays the navbar and anything
- *  else common to our entire app. The 'picture' inside the frame is the space
- *  rendered out by the component's `children`.
- */
 const Main = ({children, handleClick, isLoggedIn}) => {
   return (
     <div>
