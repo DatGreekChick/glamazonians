@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Order } = require('../db/models');
+const { Order, Address, User } = require('../db/models');
 module.exports = router;
 
 // GET /api/orders
@@ -20,9 +20,9 @@ router.get('/:orderId', (req, res, next) => {
     .catch(next);
 });
 
-// POST /spi/orders/create
+// POST /api/orders/create
 router.post('/create', (req, res, next) => {
-  console.log(req.session)
+  console.log(req.session);
   Order.create(req.body)
     .then(order => res.status(201).json(order))
     .catch(next);
@@ -30,7 +30,39 @@ router.post('/create', (req, res, next) => {
 
 // PUT /api/orders/:orderId
 router.put('/:orderId', (req, res, next) => {
-  Order.findById(req.params.orderId)
+  const { name, email, line1, city, state, zipcode } = req.body;
+  return Order.findById(req.params.orderId)
+    .then(order => {
+      if (order.userId === 0) {
+        return User.create(
+          {
+            name,
+            email,
+            addresses: [
+              {
+                line1,
+                city,
+                state,
+                zipcode
+              }
+            ]
+          },
+          { include: [Address] }
+        )
+          .then(guestUser => {
+            return order.addUser(guestUser);
+          })
+          .then();
+      } else {
+        return Address.create({
+          line1,
+          city,
+          state,
+          zipcode,
+          userId: order.userId
+        });
+      }
+    })
     .then(order => order.update(req.body), {
       returning: true,
       plain: true
