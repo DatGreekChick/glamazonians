@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import history from '../history';
 import { NotificationContainer } from 'react-notifications';
 import CartItem from './CartItem';
@@ -9,8 +9,8 @@ import { createNewOrder } from '../store';
 
 export const Cart = (props) => {
   const checkoutHandler = () => {
-    if(!props.order){
-      props.checkoutSubmit({status: 'Created', userId: props.user.id|| 0})
+    if (!props.order){
+      props.checkoutSubmit({status: 'Created', userId: props.user.id || 0})
     } else {
       history.push('/products');
     }
@@ -20,7 +20,7 @@ export const Cart = (props) => {
 <div>{
     props.cart.length ? (
       <div id="cart" className="container">
-          <table className="shopping-cart" style={{ width: '100%' }}>
+          <table className="shopping-cart">
             <tbody>
               <tr className="column-labels">
                 <th className="product-image">Image</th>
@@ -34,7 +34,7 @@ export const Cart = (props) => {
             </tbody>
           </table>
         <CartTotals cart={props.cart} />
-        <button onClick={() =>checkoutHandler()} className="checkout" >Checkout</button>
+        <button onClick={() => checkoutHandler()} className="checkout" >Checkout</button>
         <NotificationContainer />
   </div>
       )

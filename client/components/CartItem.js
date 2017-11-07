@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { withRouter, Link } from 'react-router-dom';
 import { NotificationManager } from 'react-notifications';
 import { deleteItem, increaseItem, decreaseItem } from '../store';
 
@@ -8,7 +8,9 @@ const CartItem = ({item, onDecrease, onIncrease, onDelete}) => {
   return (
       <tr key={item.id} className="product">
         <td className="product-image">
+        <Link to={`/products/${item.id}`}>
           <img src={item.image} />
+          </Link>
         </td>
         <td className="product-details">
           <div className="product-title">{item.name}</div>

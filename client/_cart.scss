@@ -1,8 +1,3 @@
-/* Global settings */
-$color-border: #eee;
-$color-label: #aaa;
-$font-default: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$font-bold: 'HelveticaNeue-Medium', 'Helvetica Neue Medium';
 
 
 /* Global "table" column settings */
@@ -16,6 +11,12 @@ $font-bold: 'HelveticaNeue-Medium', 'Helvetica Neue Medium';
 
 td {
   text-align: center;
+}
+
+table {
+  min-width: 5em;
+  width: 95%;
+  font-size: 1.4em;
 }
 
 /* This is used as the traditional .clearfix class */
@@ -55,7 +56,7 @@ h1 {
   font-weight: 100;
 }
 
-label {
+th {
   color: $color-label;
 }
 
@@ -66,7 +67,7 @@ label {
 
 /* Column headers */
 .column-labels {
-  label {
+  th {
     padding-bottom: 15px;
     margin-bottom: 15px;
     border-bottom: 1px solid $color-border;
@@ -87,6 +88,7 @@ label {
   .product-image {
     text-align: center;
     img {
+      border-radius: 6px;
       width: 100px;
     }
   }
@@ -124,33 +126,6 @@ label {
   }
 }
 
-
-/* Totals section */
-.totals {
-  .totals-item {
-    float: right;
-    clear: both;
-    width: 100%;
-    margin-bottom: 10px;
-
-    label {
-      float: left;
-      clear: both;
-      width: 79%;
-      text-align: right;
-    }
-
-    .totals-value {
-      float: right;
-      width: 21%;
-      text-align: right;
-    }
-  }
-
-  .totals-item-total {
-    font-family: $font-bold;
-  }
-}
 
 .checkout {
   float: right;
