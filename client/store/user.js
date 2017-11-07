@@ -28,6 +28,15 @@ export const auth = (email, password, method) => dispatch =>
     })
     .catch(error => dispatch(getUser({ error })));
 
+export const signUpAuth = (name, email, password, method) => dispatch =>
+  axios
+    .post(`/auth/${method}`, { name, email, password })
+    .then(res => {
+      dispatch(getUser(res.data));
+      history.push('/products');
+    })
+    .catch(error => dispatch(getUser({ error })));
+
 export const logout = () => dispatch =>
   axios
     .post('/auth/logout')
