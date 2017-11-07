@@ -68,7 +68,6 @@ const mapState = state => ({
   // Otherwise, state.user will be an empty object, and state.user.id will be falsey
   isAdmin: !!state.user.isAdmin,
   isLoggedIn: !!state.user.id,
-  order: state.order,
 });
 
 const mapDispatch = dispatch => ({

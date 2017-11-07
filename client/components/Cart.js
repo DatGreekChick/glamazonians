@@ -1,13 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import history from '../history';
 import { NotificationContainer } from 'react-notifications';
 import CartItem from './CartItem';
 import CartTotals from './CartTotals';
 import { createNewOrder } from '../store';
 
 export const Cart = (props) => {
-
+  const checkoutHandler = () => {
+    if(!props.order){
+      props.checkoutSubmit({status: 'Created', userId: props.user.id|| 0})
+    } else {
+      history.push('/products');
+    }
+  }
     // Check for empty cart and rendering the cart items, totals, and checkout button if item is in cart
   return (
 <div>{
@@ -27,7 +34,7 @@ export const Cart = (props) => {
             </tbody>
           </table>
         <CartTotals cart={props.cart} />
-        <button onClick={() => props.checkoutSubmit({status: 'Created', userId: props.user.id|| 0})} className="checkout" >Checkout</button>
+        <button onClick={() =>checkoutHandler()} className="checkout" >Checkout</button>
         <NotificationContainer />
   </div>
       )
@@ -45,6 +52,7 @@ const mapState = state => {
   return {
     cart: state.cart,
     user: state.user,
+    order: state.order,
   };
 };
 
