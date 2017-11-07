@@ -2,12 +2,24 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
-import { auth, signUpAuth } from '../store';
+import { updateOneOrder } from '../store';
 
 /**
  * COMPONENT
  */
-const Checkout = ({ handleSubmit }) => {
+const Checkout = ({ updateOrder, order }) => {
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    const name = evt.target.name.value;
+    const email = evt.target.email.value;
+    const line1 = evt.target.line1.value;
+    const line2 = evt.target.line2.value;
+    const city = evt.target.city.value;
+    const state = evt.target.state.value;
+    const zipcode = evt.target.zipcode.value;
+    updateOrder(order.id);
+  }
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -76,20 +88,14 @@ const Checkout = ({ handleSubmit }) => {
  *   function, and share the same Component. This is a good example of how we
  *   can stay DRY with interfaces that are very similar to each other!
  */
-const mapState = state => ({});
+const mapState = state => ({
+  order: state.order
+});
 
 const mapDispatch = dispatch => {
   return {
-    handleSubmit(evt) {
-      evt.preventDefault();
-      const formName = evt.target.name;
-      const email = evt.target.email.value;
-      const password = evt.target.password.value;
-      !evt.target.userName
-        ? dispatch(auth(email, password, formName))
-        : dispatch(
-            signUpAuth(evt.target.userName.value, email, password, formName)
-          );
+    updateOrder(evt) {
+      dispatch(udpateOneOrder());
     }
   };
 };

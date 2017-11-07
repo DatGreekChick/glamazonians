@@ -9,11 +9,11 @@ import { createNewOrder } from '../store';
 
 export const Cart = props => {
   const checkoutHandler = () => {
-    if (!props.order) {
-      props.checkoutSubmit({ status: 'Created', userId: props.user.id || 0 });
-    } else {
-      history.push('/checkout');
-    }
+    // if (!props.order) {
+    props.checkoutSubmit({ status: 'Created', userId: props.user.id || 0 });
+    // } else {
+    //   history.push('/checkout');
+    // }
   };
   // Check for empty cart and rendering the cart items, totals, and checkout button if item is in cart
   return (
