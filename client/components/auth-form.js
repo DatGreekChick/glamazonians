@@ -3,43 +3,58 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import { auth, signUpAuth } from '../store';
-
+import FontAwesome from 'react-fontawesome';
 /**
  * COMPONENT
  */
 const AuthForm = ({ name, displayName, handleSubmit, error, match }) => {
   return (
-    <div>
+    <div className="userForm">
       <form onSubmit={handleSubmit} name={name}>
         <div>
           {match.path === '/signup' && (
             <div>
               <label htmlFor="name">
-                <small>Name</small>
+                Name
               </label>
               <input name="userName" type="text" />
             </div>
           )}
           <div>
             <label htmlFor="email">
-              <small>Email</small>
+              Email
             </label>
             <input name="email" type="text" />
           </div>
           <div>
             <label htmlFor="password">
-              <small>Password</small>
+              Password
             </label>
             <input name="password" type="password" />
           </div>
           <div>
-            <button type="submit">{displayName}</button>
+            <button className="loginButton" type="submit">
+              {displayName}
+            </button>
           </div>
           {error && error.response && <div> {error.response.data} </div>}
         </div>
       </form>
-      <a href="/auth/google">{displayName} with Google</a>
-      <a href="/auth/facebook">{displayName} with Facebook</a>
+      <div>
+        <a href="/auth/google">
+          <FontAwesome name="google-plus-square" className="social google" />
+          <span className="socialText"> {displayName} with Google</span>
+        </a>
+      </div>
+      <div>
+        <a href="/auth/facebook">
+          <FontAwesome
+            name="facebook-square"
+            className="social facebook"
+          />{' '}
+          <span className="socialText"> {displayName} with Facebook</span>
+        </a>
+      </div>
     </div>
   );
 };
