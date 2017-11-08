@@ -51,11 +51,15 @@ const createApp = () => {
       store: sessionStore,
       resave: false,
       saveUninitialized: false,
-      cookie: { secure: false },
+      cookie: { secure: false }
     })
   );
   app.use(passport.initialize());
   app.use(passport.session());
+
+  app.get('/github', (req, res, next) => {
+    res.redirect('https://github.com/DatGreekChick/glamazonians');
+  });
 
   // auth and api routes
   app.use('/auth', require('./auth'));
