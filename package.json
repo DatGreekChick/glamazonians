@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "A place where women can transform into some other inspiring, fictional women!",
   "engines": {
-    "node": ">= 7.0.0"
+    "node": ">= 7.0.0",
+    "npm": "5.2.0"
   },
   "main": "index.js",
   "scripts": {
