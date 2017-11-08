@@ -2,12 +2,10 @@ import axios from 'axios';
 import history from '../history';
 
 // ACTION TYPES
-
 const CREATE_ORDER = 'CREATE_ORDER';
 const UPDATE_ORDER = 'UPDATE_ORDER';
 
 // ACTION CREATORS
-
 const createOrder = order => ({ type: CREATE_ORDER, order });
 const updateOrder = order => ({ type: UPDATE_ORDER, order });
 
@@ -25,7 +23,7 @@ export const updateOneOrder = orderData => dispatch => {
   axios
     .put(`/api/orders/${orderData.id}`, orderData)
     .then(res => dispatch(updateOrder(res.data)))
-    .then(() => history.push('/products'))
+    .then(() => history.push('/orders'))
     .catch(err => console.error(err));
 };
 

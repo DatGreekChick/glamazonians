@@ -2,14 +2,25 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
-import { updateOneOrder } from '../store';
+import { postItem } from '../store';
 
 /**
  * COMPONENT
  */
-const Checkout = ({ updateOrder, order }) => {
+const Checkout = ({ createItem, order, cart }) => {
   function handleSubmit(evt) {
     evt.preventDefault();
+
+    cart.map(product => {
+      let newItem = {
+        purchasePrice: product.price,
+        purchaseNum: product.quantityInCart,
+        productId: product.id,
+        orderId: order.id,
+      };
+
+      createItem(newItem);
+    })
     const name = evt.target.name.value;
     const email = evt.target.email.value;
     const line1 = evt.target.line1.value;
@@ -17,7 +28,7 @@ const Checkout = ({ updateOrder, order }) => {
     const city = evt.target.city.value;
     const state = evt.target.state.value;
     const zipcode = evt.target.zipcode.value;
-    updateOrder(order.id);
+
   }
 
   return (
@@ -89,13 +100,14 @@ const Checkout = ({ updateOrder, order }) => {
  *   can stay DRY with interfaces that are very similar to each other!
  */
 const mapState = state => ({
-  order: state.order
+  order: state.order,
+  cart: state.cart
 });
 
 const mapDispatch = dispatch => {
   return {
-    updateOrder(evt) {
-      dispatch(udpateOneOrder());
+    createItem(item) {
+      dispatch(postItem(item));
     }
   };
 };
@@ -105,6 +117,3 @@ export default withRouter(connect(mapState, mapDispatch)(Checkout));
 /**
  * PROP TYPES
  */
-Checkout.propTypes = {
-  handleSubmit: PropTypes.func.isRequired
-};
