@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Order, Address, User } = require('../db/models');
+const { Order, Address, User, LineItem } = require('../db/models');
 module.exports = router;
 
 // GET /api/orders
@@ -13,9 +13,17 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
-// GET /api/orders/:orderId
-router.get('/:orderId', (req, res, next) => {
-  Order.findById(req.params.orderId)
+// GET /api/orders/:userId
+router.get('/:userId', (req, res, next) => {
+  Order.findAll({
+    where: {
+      userId: req.params.userId
+    },
+    include: [
+      {
+        all: true, nested: true
+      }
+    ] })
     .then(order => res.json(order))
     .catch(next);
 });

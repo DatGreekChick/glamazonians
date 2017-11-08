@@ -8,6 +8,8 @@ import order from './order';
 import products from './products';
 import product from './product';
 import reviews from './reviews';
+import item from './item';
+import orders from './orders';
 
 const reducer = combineReducers({
   user,
@@ -16,6 +18,8 @@ const reducer = combineReducers({
   products,
   product,
   reviews,
+  item,
+  orders
 });
 
 const middleware = composeWithDevTools(applyMiddleware(
@@ -34,5 +38,7 @@ export * from './order';
 export * from './products';
 export * from './product';
 export * from './reviews';
+export * from './item';
+export * from './orders';
 
 export default store;
