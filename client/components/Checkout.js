@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { withRouter, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { postItem } from '../store';
+import ThankYou from './ThankYou';
 
 /**
  * COMPONENT
@@ -16,11 +17,11 @@ const Checkout = ({ createItem, order, cart }) => {
         purchasePrice: product.price,
         purchaseNum: product.quantityInCart,
         productId: product.id,
-        orderId: order.id,
+        orderId: order.id
       };
 
       createItem(newItem);
-    })
+    });
     const name = evt.target.name.value;
     const email = evt.target.email.value;
     const line1 = evt.target.line1.value;
@@ -28,7 +29,6 @@ const Checkout = ({ createItem, order, cart }) => {
     const city = evt.target.city.value;
     const state = evt.target.state.value;
     const zipcode = evt.target.zipcode.value;
-
   }
 
   return (
@@ -84,7 +84,9 @@ const Checkout = ({ createItem, order, cart }) => {
             <input name="creditcard" type="text" />
           </div>
           <div>
-            <button type="submit">Purchase</button>
+            <Link to="/thank-you">
+              <button type="submit">Purchase</button>
+            </Link>
           </div>
         </div>
       </form>

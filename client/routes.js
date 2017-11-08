@@ -14,7 +14,8 @@ import {
   About,
   Cart,
   AddProductForm,
-  Checkout
+  Checkout,
+  ThankYou
 } from './components';
 
 import { me, fetchAllProducts } from './store';
@@ -41,7 +42,8 @@ class Routes extends Component {
               component={SingleProduct}
             />
             <Route exact path="/products" component={AllProducts} />
-            <Route exact path="/checkout" component={Checkout} />>
+            <Route exact path="/checkout" component={Checkout} />
+            <Route exact path="/thank-you" component={ThankYou} />
             {isLoggedIn && (
               <Switch>
                 <Route exact path="/products" component={AllProducts} />
