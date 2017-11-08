@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 import Reviews from './Reviews';
 import { connect } from 'react-redux';
 import {
   fetchSingleProduct,
+  // getSimilarProducts,
   addItem
 } from '../store';
 import {
@@ -36,6 +38,11 @@ class SingleProduct extends Component {
         <div className="product-info">
           <h2> &#36; {product.priceInDollars} </h2>
           <h4>{product.description}</h4>
+          <div>
+            {product.tags.map(tag => {
+              return <Link to={`/products`}> {tag} </Link>
+            })}
+          </div>
           <div>
             <button
               className="addButton"
@@ -70,6 +77,7 @@ const mapDispatchToProps = dispatch => ({
   onAdd: product => {
     dispatch(addItem(product));
   }
+
 });
 
 export default withRouter(
